@@ -6,6 +6,7 @@
   <meta name="description" content="Sắc Xanh Xứ Nghệ — từ đôi bàn tay người nghệ nhân, những món quà mây tre đan kể chuyện Làng Sen, Cửa Lò, Sông Lam và ví, giặm Nghệ Tĩnh.">
   <meta name="theme-color" content="#fff7e9">
   <title>Sắc Xanh Xứ Nghệ · Du lịch xanh</title>
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="preload" href="assets/fonts/capitaly-script-regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="styles.css">
@@ -16,13 +17,11 @@
   <a class="skip-link" href="#noi-dung">Đến nội dung</a>
   <header class="site-header">
     <a class="brand" href="#gioi-thieu">Sắc Xanh Xứ Nghệ</a>
-    <nav aria-label="Khám phá bộ sưu tập">
-      <a href="#gioi-thieu">Giới thiệu</a>
-      <a href="#lang-sen">Làng Sen</a>
-      <a href="#cua-lo">Cửa Lò</a>
-      <a href="#song-lam">Sông Lam</a>
-      <a href="#vi-giam">Ví Dặm</a>
-    </nav>
+    <div class="reader-tools" hidden aria-label="Tỷ lệ hiển thị trang">
+      <button id="zoom-out" type="button" aria-label="Thu nhỏ" title="Thu nhỏ">−</button>
+      <button id="zoom-reset" type="button" aria-label="Vừa trang" title="Vừa trang"><span id="zoom-level">100%</span></button>
+      <button id="zoom-in" type="button" aria-label="Phóng to" title="Phóng to">+</button>
+    </div>
   </header>
 
   <main id="noi-dung" tabindex="-1" aria-label="Sổ tay Sắc Xanh Xứ Nghệ">
@@ -33,28 +32,28 @@
       <div class="cover-inner">
         <div class="cover-heading">
           <p class="welcome">Chào mừng bạn đến với</p>
-          <h1 id="tieu-de">Sắc Xanh Xứ Nghệ<img class="title-leaves" src="assets/canva/MAHaEDpcleM.webp" alt="" aria-hidden="true" ></h1>
-          <img class="title-underline" src="assets/canva/MAHaEOuDZXc.webp" alt="" aria-hidden="true" >
+          <h1 id="tieu-de">Sắc Xanh Xứ Nghệ<img width="315" height="239" decoding="async" loading="lazy" class="title-leaves" src="assets/canva/MAHaEDpcleM.webp" alt="" aria-hidden="true" ></h1>
+          <img width="900" height="145" decoding="async" loading="lazy" class="title-underline" src="assets/canva/MAHaEOuDZXc.webp" alt="" aria-hidden="true" >
         </div>
-        <img class="craft-circle craft-top" src="assets/canva/MAHaEHDceh4.webp" alt="Những nan tre được xếp đan thủ công"  >
+        <img width="800" height="814" decoding="async" loading="lazy" class="craft-circle craft-top" src="assets/canva/MAHaEHDceh4.webp" alt="Những nan tre được xếp đan thủ công"  >
         <svg class="curve-arrow arrow-top" viewBox="0 0 150 200" aria-hidden="true"><path d="M30 190C-5 114 55 45 128 17" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="m107 15 27-4-10 25" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div class="cover-body">
           <div class="cover-copy">
-            <h2 class="brush-title"><img class="" src="assets/canva/MAHaEA3vwfk.webp" alt="" aria-hidden="true" ><span>Dấu ấn từ làng nghề</span><img class="brush-lotus" src="assets/canva/MAHaEMy5ISM.webp" alt="" aria-hidden="true" ></h2>
+            <h2 class="brush-title"><img width="900" height="254" decoding="async" loading="lazy" class="" src="assets/canva/MAHaEA3vwfk.webp" alt="" aria-hidden="true" ><span>Dấu ấn từ làng nghề</span><img width="315" height="479" decoding="async" loading="lazy" class="brush-lotus" src="assets/canva/MAHaEMy5ISM.webp" alt="" aria-hidden="true" ></h2>
             <p>Từ đôi bàn tay khéo léo của người nghệ nhân xứ Nghệ, những sản phẩm mây tre đan mang đậm hồn quê Việt.</p>
             <div class="weaving-drawing">
-              <img class="weaving-hands" src="assets/canva/MAHaEOCz07c.webp" alt="" aria-hidden="true" >
-              <img class="dotted-curve" src="assets/canva/MAHaEI7VfzY.webp" alt="" aria-hidden="true" >
+              <img width="900" height="653" decoding="async" loading="lazy" class="weaving-hands" src="assets/canva/MAHaEOCz07c.webp" alt="" aria-hidden="true" >
+              <img width="785" height="797" decoding="async" loading="lazy" class="dotted-curve" src="assets/canva/MAHaEI7VfzY.webp" alt="" aria-hidden="true" >
             </div>
           </div>
           <figure class="cover-product">
-            <div class="postage-frame"><img class="hero-photo" src="assets/canva/MAHaEPTW_1Y.webp" width="1600" height="1200" alt="Bộ quà mây tre đan vẽ hoa sen và chim trắng, gồm mẹt tre, túi và móc khóa" fetchpriority="high"></div>
+            <div class="postage-frame"><img width="1280" height="960" decoding="async" loading="lazy" class="hero-photo" src="assets/canva/MAHaEPTW_1Y.webp" alt="Bộ quà mây tre đan vẽ hoa sen và chim trắng, gồm mẹt tre, túi và móc khóa" fetchpriority="high"></div>
           </figure>
         </div>
-        <div class="green-signature"><img class="green-logo" src="assets/canva/MAHZ-qsa4E4.webp" alt="Biểu trưng du lịch xanh với núi, sông và hoa sen"  ><p>– DU LỊCH XANH –</p></div>
+        <div class="green-signature"><img width="831" height="753" decoding="async" loading="lazy" class="green-logo" src="assets/canva/MAHZ-qsa4E4.webp" alt="Biểu trưng du lịch xanh với núi, sông và hoa sen"  ><p>– DU LỊCH XANH –</p></div>
         <a class="scroll-cue" href="#lang-sen">Mở bộ sưu tập <span aria-hidden="true">→</span></a>
       </div>
-      <img class="craft-circle craft-bottom" src="assets/canva/MAHaEHw48ig.webp" width="800" height="1099" alt="Bàn tay người thợ đang đan nan tre">
+      <img width="800" height="1099" decoding="async" loading="lazy" class="craft-circle craft-bottom" src="assets/canva/MAHaEHw48ig.webp" alt="Bàn tay người thợ đang đan nan tre">
       <svg class="curve-arrow arrow-bottom" viewBox="0 0 200 90" aria-hidden="true"><path d="M190 58C142 5 80 10 25 68" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="m28 45-7 28 28-4" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </section>
 
@@ -63,50 +62,50 @@
         <div class="lotus-paper">
           <header class="lotus-heading">
             <h2 id="lang-sen-title"><span>Làng Sen</span><span>Quê Bác</span></h2>
-            <img class="uncle-ho" src="assets/canva/MAHaEYLS-w4.webp" alt="Chân dung Chủ tịch Hồ Chí Minh"  loading="lazy">
+            <img width="300" height="398" decoding="async" class="uncle-ho" src="assets/canva/MAHaEYLS-w4.webp" alt="Chân dung Chủ tịch Hồ Chí Minh"  loading="lazy">
           </header>
           <div class="story-copy lotus-copy"><p>Làng Sen Kim Liên với những mái nhà giản dị, hàng tre xanh và ao sen hồng từ lâu đã trở thành hình ảnh thân thuộc của quê hương Nghệ An. Đây không chỉ là quê hương Chủ tịch Hồ Chí Minh mà còn là nơi lưu giữ những giá trị văn hóa và truyền thống tốt đẹp của người Việt.</p>
           <p>Lấy cảm hứng từ vẻ đẹp ấy, bộ sản phẩm Làng Sen Kim Liên thuộc bộ sưu tập “Sắc Xanh Xứ Nghệ” ra đời nhằm đưa hình ảnh quê hương đến gần hơn với du khách. Trên chiếc mẹt tre là khung cảnh ngôi nhà quê bên hồ sen, kết hợp cùng chiếc túi và móc khóa hình nón được trang trí đồng điệu, tạo nên bộ quà lưu niệm mang đậm dấu ấn văn hóa Việt Nam.</p>
           <p>Điểm đặc biệt của sản phẩm là sự kết hợp giữa hình ảnh Làng Sen và chất liệu mây tre đan truyền thống. Những vật liệu gần gũi với thiên nhiên được người thợ khéo léo tạo hình, vừa có giá trị thẩm mỹ, vừa có thể sử dụng hoặc trưng bày trong đời sống hằng ngày.</p>
           <p>Không chỉ là món quà lưu niệm, bộ sản phẩm còn góp phần quảng bá văn hóa địa phương, tôn vinh nghề thủ công truyền thống và khuyến khích du lịch gắn với thiên nhiên. Qua từng đường đan và hình ảnh hoa sen, “Sắc Xanh Xứ Nghệ” mong muốn gửi đến du khách một món quà giản dị nhưng ý nghĩa, giúp lưu giữ những ký ức đẹp về quê Bác và vùng đất Nghệ An thân thương.</p></div>
           <div class="lotus-garden">
-            <img loading="lazy" decoding="async" class="lotus-stem" src="assets/canva/MAHYveLmNj0.webp" alt="" aria-hidden="true" >
-            <img loading="lazy" decoding="async" class="lotus-grove" src="assets/canva/MAGCLH4V1mw.webp" alt="" aria-hidden="true" >
-            <img loading="lazy" decoding="async" class="lotus-bloom" src="assets/canva/MAHYvYTMCqE.webp" alt="" aria-hidden="true" >
-            <img class="lotus-product" src="assets/canva/MAHaEpzSka8.webp" alt="Bộ quà Làng Sen Kim Liên với mẹt tre, túi và móc khóa vẽ nhà Bác bên ao sen"  loading="lazy">
+            <img width="900" height="1328" loading="lazy" decoding="async" class="lotus-stem" src="assets/canva/MAHYveLmNj0.webp" alt="" aria-hidden="true" >
+            <img width="900" height="1116" loading="lazy" decoding="async" class="lotus-grove" src="assets/canva/MAGCLH4V1mw.webp" alt="" aria-hidden="true" >
+            <img width="900" height="530" loading="lazy" decoding="async" class="lotus-bloom" src="assets/canva/MAHYvYTMCqE.webp" alt="" aria-hidden="true" >
+            <img width="1280" height="983" decoding="async" class="lotus-product" src="assets/canva/MAHaEpzSka8.webp" alt="Bộ quà Làng Sen Kim Liên với mẹt tre, túi và móc khóa vẽ nhà Bác bên ao sen"  loading="lazy">
           </div>
         </div>
-        <img loading="lazy" decoding="async" class="cloud cloud-left" src="assets/canva/MAF5i_Z4UOg.webp" alt="" aria-hidden="true" >
-        <img loading="lazy" decoding="async" class="cloud cloud-right" src="assets/canva/MAF5i_Z4UOg.webp" alt="" aria-hidden="true" >
+        <img width="900" height="452" loading="lazy" decoding="async" class="cloud cloud-left" src="assets/canva/MAF5i_Z4UOg.webp" alt="" aria-hidden="true" >
+        <img width="900" height="452" loading="lazy" decoding="async" class="cloud cloud-right" src="assets/canva/MAF5i_Z4UOg.webp" alt="" aria-hidden="true" >
       </div>
     </section>
 
     <section class="chapter coast" id="cua-lo" aria-labelledby="cua-lo-title">
       <div class="coast-inner">
         <div class="coast-crown" aria-hidden="true">
-          <img loading="lazy" decoding="async" class="lotus-hills" src="assets/canva/MAHaEOR0Dnc.webp" alt="" aria-hidden="true" >
-          <img loading="lazy" decoding="async" class="coast-tray" src="assets/canva/MAHaEiXzqPc.webp" alt="" aria-hidden="true" >
+          <img width="449" height="126" loading="lazy" decoding="async" class="lotus-hills" src="assets/canva/MAHaEOR0Dnc.webp" alt="" aria-hidden="true" >
+          <img width="1000" height="975" loading="lazy" decoding="async" class="coast-tray" src="assets/canva/MAHaEiXzqPc.webp" alt="" aria-hidden="true" >
         </div>
         <div class="coast-paper">
           <div class="coast-aside">
             <h2 id="cua-lo-title">Cửa Lò<br><span>Bến nhớ</span></h2>
-            <img class="coast-product" src="assets/canva/MAHaELE6ARw.webp" width="1600" height="1200" alt="Bộ quà Biển Cửa Lò, mẹt tre vẽ biển xanh, thuyền và bờ cát" loading="lazy">
+            <img width="1280" height="960" decoding="async" class="coast-product" src="assets/canva/MAHaELE6ARw.webp" alt="Bộ quà Biển Cửa Lò, mẹt tre vẽ biển xanh, thuyền và bờ cát" loading="lazy">
           </div>
-          <div class="coast-divider" aria-hidden="true"><img loading="lazy" decoding="async" class="divider-lotus" src="assets/canva/MAHaEOgdceY.webp" alt="" aria-hidden="true" ></div>
+          <div class="coast-divider" aria-hidden="true"><img width="43" height="25" loading="lazy" decoding="async" class="divider-lotus" src="assets/canva/MAHaEOgdceY.webp" alt="" aria-hidden="true" ></div>
           <div class="story-copy coast-copy"><p>Biển Cửa Lò với bãi cát dài, làn nước xanh và những con thuyền vươn khơi là hình ảnh đặc trưng của quê hương Nghệ An. Không chỉ là điểm đến nghỉ dưỡng, nơi đây còn gắn liền với cuộc sống bình dị của người dân miền biển.</p>
           <p>Lấy cảm hứng từ vẻ đẹp ấy, bộ sản phẩm Biển Cửa Lò thuộc bộ sưu tập “Sắc Xanh Xứ Nghệ” tái hiện khung cảnh biển xanh, bờ cát vàng, hàng dừa và những con thuyền nhỏ. Hình ảnh được thể hiện trên mẹt tre, túi mây tre đan và móc khóa hình nón, tạo nên bộ quà lưu niệm mang đậm dấu ấn vùng biển.</p>
           <p>Sản phẩm không chỉ gợi nhớ những kỷ niệm bên biển mà còn gửi gắm thông điệp bảo vệ môi trường, giữ gìn cảnh quan và hạn chế rác thải nhựa. Với chất liệu thủ công gần gũi thiên nhiên, bộ quà tặng mong muốn đưa vẻ đẹp Cửa Lò đến gần hơn với du khách, lưu giữ những ký ức đáng nhớ về biển quê hương.</p></div>
         </div>
-        <img loading="lazy" decoding="async" class="coast-ribbon" src="assets/canva/MAHaEErtjIc.webp" alt="" aria-hidden="true" >
-        <img loading="lazy" decoding="async" class="coast-lotus-outline" src="assets/canva/MAHaEE1nE3Q.webp" alt="" aria-hidden="true" >
+        <img width="522" height="100" loading="lazy" decoding="async" class="coast-ribbon" src="assets/canva/MAHaEErtjIc.webp" alt="" aria-hidden="true" >
+        <img width="106" height="64" loading="lazy" decoding="async" class="coast-lotus-outline" src="assets/canva/MAHaEE1nE3Q.webp" alt="" aria-hidden="true" >
       </div>
     </section>
 
     <section class="chapter river" id="song-lam" aria-labelledby="song-lam-title">
       <div class="river-inner">
-        <div class="drum-pattern" aria-hidden="true"><img loading="lazy" decoding="async" class="" src="assets/canva/MAHYuHoZuBk.webp" alt="" aria-hidden="true" ><img loading="lazy" decoding="async" class="" src="assets/canva/MAHYuO34iAs.webp" alt="" aria-hidden="true" ></div>
-        <img loading="lazy" decoding="async" class="bamboo bamboo-left" src="assets/canva/MAHYuIn7LFo.webp" alt="" aria-hidden="true" >
-        <img loading="lazy" decoding="async" class="bamboo bamboo-right" src="assets/canva/MAHYuMUtFYo.webp" alt="" aria-hidden="true" >
+        <div class="drum-pattern" aria-hidden="true"><img width="900" height="1799" loading="lazy" decoding="async" class="" src="assets/canva/MAHYuHoZuBk.webp" alt="" aria-hidden="true" ><img width="900" height="1799" loading="lazy" decoding="async" class="" src="assets/canva/MAHYuO34iAs.webp" alt="" aria-hidden="true" ></div>
+        <img width="720" height="821" loading="lazy" decoding="async" class="bamboo bamboo-left" src="assets/canva/MAHYuIn7LFo.webp" alt="" aria-hidden="true" >
+        <img width="720" height="821" loading="lazy" decoding="async" class="bamboo bamboo-right" src="assets/canva/MAHYuMUtFYo.webp" alt="" aria-hidden="true" >
         <div class="river-content">
           <h2 id="song-lam-title">Dấu ấn Sông Lam</h2>
           <div class="story-copy river-copy"><p>Sông Lam từ lâu đã gắn bó với đời sống người dân xứ Nghệ, bồi đắp phù sa cho ruộng đồng và lưu giữ ký ức của nhiều thế hệ. Dòng sông không chỉ là cảnh quan quen thuộc mà còn tượng trưng cho tình yêu quê hương và những kỷ niệm bình dị.</p>
@@ -116,49 +115,44 @@
           <p>Sản phẩm kết hợp chất liệu thủ công truyền thống của Nghi Thái với hình ảnh Sông Lam, giúp du khách lưu giữ những kỷ niệm về Nghệ An theo cách gần gũi và ý nghĩa hơn. Qua đó, “Sắc Xanh Xứ Nghệ” mong muốn lan tỏa tình yêu quê hương, sự trân trọng văn hóa và ý thức gìn giữ cảnh quan thiên nhiên.</p></div>
         </div>
         <div class="river-landscape">
-          <img loading="lazy" decoding="async" class="river-scene" src="assets/canva/MAHaEt-h7qM.webp" alt="" aria-hidden="true" >
-          <img loading="lazy" decoding="async" class="river-ribbon" src="assets/canva/MAHaEqA81xA.webp" alt="" aria-hidden="true" >
-          <img loading="lazy" decoding="async" class="river-lotus-left" src="assets/canva/MAHaEnb2Y_Y.webp" alt="" aria-hidden="true" >
-          <img loading="lazy" decoding="async" class="river-lotus-right" src="assets/canva/MAHaEjECM3A.webp" alt="" aria-hidden="true" >
-          <img class="river-product" src="assets/canva/MAHaEidQmgQ.webp" alt="Bộ quà Sông Lam với cảnh núi đồi, hoàng hôn và thuyền trên sông"  loading="lazy">
+          <img width="900" height="295" loading="lazy" decoding="async" class="river-scene" src="assets/canva/MAHaEt-h7qM.webp" alt="" aria-hidden="true" >
+          <img width="900" height="155" loading="lazy" decoding="async" class="river-ribbon" src="assets/canva/MAHaEqA81xA.webp" alt="" aria-hidden="true" >
+          <img width="777" height="912" loading="lazy" decoding="async" class="river-lotus-left" src="assets/canva/MAHaEnb2Y_Y.webp" alt="" aria-hidden="true" >
+          <img width="900" height="366" loading="lazy" decoding="async" class="river-lotus-right" src="assets/canva/MAHaEjECM3A.webp" alt="" aria-hidden="true" >
+          <img width="1280" height="1015" decoding="async" class="river-product" src="assets/canva/MAHaEidQmgQ.webp" alt="Bộ quà Sông Lam với cảnh núi đồi, hoàng hôn và thuyền trên sông"  loading="lazy">
         </div>
       </div>
     </section>
 
     <section class="chapter folk" id="vi-giam" aria-labelledby="vi-giam-title">
       <div class="folk-inner">
-        <img loading="lazy" decoding="async" class="blossom blossom-top" src="assets/canva/MAHaEhp98PA.webp" alt="" aria-hidden="true" >
+        <img width="900" height="730" loading="lazy" decoding="async" class="blossom blossom-top" src="assets/canva/MAHaEhp98PA.webp" alt="" aria-hidden="true" >
         <article class="folk-paper">
           <header class="folk-heading">
-            <img class="folk-product" src="assets/canva/MAHaEg9PXoU.webp" alt="Bộ quà Ví Dặm xứ Nghệ minh họa đôi trai gái trong trang phục truyền thống"  loading="lazy">
+            <img width="1280" height="970" decoding="async" class="folk-product" src="assets/canva/MAHaEg9PXoU.webp" alt="Bộ quà Ví Dặm xứ Nghệ minh họa đôi trai gái trong trang phục truyền thống"  loading="lazy">
             <h2 id="vi-giam-title">Ví Dặm<br>Tình ca</h2>
-            <img loading="lazy" decoding="async" class="music-notes" src="assets/canva/MAEudmx1zPk.webp" alt="" aria-hidden="true" >
+            <img width="800" height="759" loading="lazy" decoding="async" class="music-notes" src="assets/canva/MAEudmx1zPk.webp" alt="" aria-hidden="true" >
           </header>
           <div class="story-copy folk-copy"><p>Dân ca ví, giặm từ lâu đã trở thành một phần không thể thiếu trong đời sống văn hóa của người dân Nghệ An và Hà Tĩnh. Những câu hát mộc mạc chứa đựng tình yêu quê hương, tình cảm gia đình và tâm hồn chân thành của con người xứ Nghệ. Năm 2014, dân ca ví, giặm Nghệ Tĩnh được UNESCO ghi danh là Di sản văn hóa phi vật thể đại diện của nhân loại.</p>
           <p>Lấy cảm hứng từ di sản ấy, bộ sản phẩm Ví, giặm Nghệ Tĩnh thuộc bộ sưu tập “Sắc Xanh Xứ Nghệ” khắc họa hình ảnh đôi trai gái trong trang phục truyền thống, kết hợp cùng nốt nhạc và khung cảnh quê hương trên mẹt tre, túi mây tre đan và móc khóa hình nón.</p>
           <p>Các sản phẩm được làm từ tre và mây tự nhiên có nguồn gốc từ làng nghề mây tre đan xã Nghi Thái. Tại làng nghề, người thợ sử dụng những kỹ thuật truyền thống để chẻ, vót, phơi, uốn và đan nguyên liệu thành các sản phẩm thủ công. Mỗi sản phẩm là kết quả của sự khéo léo, kiên trì và kinh nghiệm được gìn giữ qua thời gian.</p>
           <p>Việc kết hợp hình ảnh dân ca ví, giặm với sản phẩm mây tre đan Nghi Thái tạo nên sự gặp gỡ giữa hai giá trị văn hóa của Nghệ An: di sản nghệ thuật dân gian và nghề thủ công truyền thống. Nếu lời ca được lưu truyền qua giọng hát, thì kỹ nghệ đan lát được tiếp nối qua đôi bàn tay người thợ.</p>
           <p>Sản phẩm là sự kết hợp giữa giá trị văn hóa và nghề thủ công truyền thống, góp phần đưa dân ca ví, giặm đến gần hơn với du khách, đặc biệt là thế hệ trẻ. Qua từng đường đan và hình ảnh, “Sắc Xanh Xứ Nghệ” mong muốn lưu giữ lời ca quê hương, khơi gợi niềm tự hào văn hóa và lan tỏa những giá trị di sản qua những món quà giản dị, thân thiện với môi trường.</p></div>
-          <div class="music-staff" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/canva/MAEBYEU7kVw.webp" alt=""></div>
+          <div class="music-staff" aria-hidden="true"><img width="1600" height="352" loading="lazy" decoding="async" src="assets/canva/MAEBYEU7kVw.webp" alt=""></div>
         </article>
-        <img loading="lazy" decoding="async" class="blossom blossom-bottom" src="assets/canva/MAHaEomOD2Q.webp" alt="" aria-hidden="true" >
+        <img width="900" height="730" loading="lazy" decoding="async" class="blossom blossom-bottom" src="assets/canva/MAHaEomOD2Q.webp" alt="" aria-hidden="true" >
       </div>
       <footer class="site-footer"><a href="#gioi-thieu">Sắc Xanh Xứ Nghệ</a><a href="#dau-trang">Về đầu trang ↑</a></footer>
     </section>
         </div>
+        <div class="book-page-controls" hidden>
+          <button class="page-arrow page-arrow-previous" id="previous-page" type="button" aria-label="Trang trước" title="Trang trước"><svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true"><path d="M24 10H4m7-6-7 6 7 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="page-arrow page-arrow-next" id="next-page" type="button" aria-label="Trang sau" title="Trang sau"><svg width="28" height="20" viewBox="0 0 28 20" fill="none" aria-hidden="true"><path d="M4 10h20m-7-6 7 6-7 6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
       </div>
     </div>
+    <p id="page-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    <p class="reader-hint" hidden>Vuốt hoặc dùng phím ← → để lật trang</p>
   </main>
-  <footer class="book-toolbar" hidden>
-    <div class="book-pagination">
-      <button class="turn-button" id="previous-page" type="button" aria-label="Trang trước"><span aria-hidden="true">←</span><span class="button-label">Trang trước</span></button>
-      <div class="page-status" role="status" aria-live="polite" aria-atomic="true"><span id="page-title">Giới thiệu</span><span id="page-number">1 / 5</span></div>
-      <button class="turn-button" id="next-page" type="button" aria-label="Trang sau"><span class="button-label">Trang sau</span><span aria-hidden="true">→</span></button>
-    </div>
-    <div class="book-tools">
-      <span class="turn-hint">Vuốt hoặc dùng phím ← → để lật trang</span>
-      <button class="zoom-button" id="zoom-page" type="button" aria-pressed="false"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 4 4M6 8.5h5M8.5 6v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Phóng to</span></button>
-    </div>
-  </footer>
 </body>
 </html>

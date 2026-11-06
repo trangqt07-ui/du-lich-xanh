@@ -3,24 +3,31 @@
   const stage = document.querySelector("#book-stage");
   const shell = document.querySelector(".book-shell");
   const pages = document.querySelector(".book-pages");
-  const toolbar = document.querySelector(".book-toolbar");
   const previous = document.querySelector("#previous-page");
   const next = document.querySelector("#next-page");
-  const zoom = document.querySelector("#zoom-page");
-  const links = [...document.querySelectorAll(".site-header nav a")];
+  const zoomOut = document.querySelector("#zoom-out");
+  const zoomIn = document.querySelector("#zoom-in");
+  const zoomReset = document.querySelector("#zoom-reset");
+  const status = document.querySelector("#page-status");
   const labels = ["Giới thiệu", "Làng Sen quê Bác", "Cửa Lò bến nhớ", "Dấu ấn Sông Lam", "Ví Dặm tình ca"];
   const paper = ["#fff7e9", "#895015", "#bddedc", "#fae7c6", "#779a47"];
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const PAGE_WIDTH = 1120;
-  const PAGE_HEIGHT = 1400;
-  let current = 0;
-  let busy = false;
-  let queued = null;
-  let zoomed = false;
-  let animation = null;
-  let layoutPending = false;
-  let swipe = null;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const WIDTH = 1120, HEIGHT = 1400, MIN_ZOOM = .6, MAX_ZOOM = 4;
+  const pointers = new Map();
+  const preparations = new Map();
+  const fontLoads = new Map();
+  const pageFonts = [
+    ['400 21px "Capitaly Script"', '400 21px "Dancing Script"', '400 21px "Crimson Roman"', '700 22px "Linux Biolinum"', '400 21px "DM Sans"'],
+    ['400 21px "TAN Astoria"', '400 21px "Muli"'],
+    ['400 21px "TT Ramillas"', '400 21px "Lato"'],
+    ['400 21px "Aloevera"', '400 21px "Muli"'],
+    ['400 21px "Keong"', '400 21px "Muli"']
+  ];
+  let cancelPrefetch = null;
+  let current = 0, busy = false, queued = null, zoomRatio = 1;
+  let animations = [], layoutPending = false, gesture = null;
 
+  const wrap = index => (index % chapters.length + chapters.length) % chapters.length;
   function indexForHash(hash) {
     if (!hash || hash === "#dau-trang") return 0;
     if (hash === "#bo-suu-tap") return 1;
@@ -35,12 +42,9 @@
     leaf.style.setProperty("--page-paper", paper[index]);
     const face = document.createElement("div");
     face.className = "book-face";
-    const back = document.createElement("div");
-    back.className = "book-page-back";
-    back.setAttribute("aria-hidden", "true");
     chapter.before(leaf);
     face.append(chapter);
-    leaf.append(face, back);
+    leaf.append(face);
     leaf.hidden = true;
     for (const image of chapter.querySelectorAll("img")) {
       image.draggable = false;
@@ -49,53 +53,71 @@
     return leaf;
   });
 
+  const effect = document.createElement("div");
+  effect.className = "page-effect";
+  effect.hidden = true;
+  effect.setAttribute("aria-hidden", "true");
+  effect.innerHTML = '<svg class="page-curl" viewBox="0 0 380 1400" preserveAspectRatio="none"><defs><linearGradient id="curl-paper" x1="0" x2="1"><stop offset="0" stop-color="#bbae92"/><stop offset=".25" stop-color="#eee2ca"/><stop offset=".58" stop-color="#fffaee"/><stop offset=".85" stop-color="#f5ead4"/><stop offset="1" stop-color="#d2bea0"/></linearGradient></defs><path d="M320 0 C160 240 70 420 40 700 C70 980 160 1160 320 1400 C260 1100 280 950 340 700 C280 450 260 300 320 0Z" fill="url(#curl-paper)"/></svg>';
+  pages.append(effect);
+  const curl = effect.querySelector("svg");
+
   function fitChapter(index) {
-    const leaf = leaves[index];
-    const chapter = chapters[index];
-    const hidden = leaf.hidden;
-    if (hidden) {
-      leaf.style.visibility = "hidden";
-      leaf.hidden = false;
-    }
-    const height = Math.max(chapter.offsetHeight, PAGE_HEIGHT);
-    const scale = Math.min(1, PAGE_HEIGHT / height);
-    const left = (PAGE_WIDTH - PAGE_WIDTH * scale) / 2;
-    chapter.style.transform = "translateX(" + left + "px) scale(" + scale + ")";
-    if (hidden) {
-      leaf.hidden = true;
-      leaf.style.removeProperty("visibility");
-    }
+    const leaf = leaves[index], chapter = chapters[index], hidden = leaf.hidden;
+    if (hidden) { leaf.style.visibility = "hidden"; leaf.hidden = false; }
+    const scale = Math.min(1, HEIGHT / Math.max(chapter.offsetHeight, HEIGHT));
+    chapter.style.transform = "translateX(" + ((WIDTH - WIDTH * scale) / 2) + "px) scale(" + scale + ")";
+    if (hidden) { leaf.hidden = true; leaf.style.removeProperty("visibility"); }
+  }
+
+  function hasOverflow() {
+    return stage.scrollWidth > stage.clientWidth + 3 || stage.scrollHeight > stage.clientHeight + 3;
   }
 
   function layout() {
     layoutPending = false;
     const style = getComputedStyle(stage);
-    const width = Math.max(1, stage.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
-    const height = Math.max(1, stage.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom));
-    const fit = Math.min(width / PAGE_WIDTH, height / PAGE_HEIGHT, 1);
-    const scale = zoomed ? Math.min(2, Math.max(fit * 1.85, .85)) : fit;
+    const availableWidth = Math.max(1, stage.offsetWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
+    const availableHeight = Math.max(1, stage.offsetHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom));
+    const fit = Math.min(availableWidth / WIDTH, availableHeight / HEIGHT, 1);
+    const scale = fit * zoomRatio;
     shell.style.setProperty("--book-scale", scale);
-    shell.style.setProperty("--book-width", PAGE_WIDTH * scale + "px");
-    shell.style.setProperty("--book-height", PAGE_HEIGHT * scale + "px");
+    shell.style.setProperty("--book-width", WIDTH * scale + "px");
+    shell.style.setProperty("--book-height", HEIGHT * scale + "px");
+    shell.style.setProperty("--book-top", Math.max(0, (availableHeight - HEIGHT * scale) / 2) + "px");
     fitChapter(current);
+    stage.classList.toggle("can-pan", hasOverflow());
   }
 
   function scheduleLayout() {
-    if (!layoutPending) {
-      layoutPending = true;
-      requestAnimationFrame(layout);
-    }
+    if (!layoutPending) { layoutPending = true; requestAnimationFrame(layout); }
   }
 
   function updateControls() {
-    previous.disabled = busy || current === 0;
-    next.disabled = busy || current === chapters.length - 1;
-    document.querySelector("#page-title").textContent = labels[current];
-    document.querySelector("#page-number").textContent = (current + 1) + " / " + chapters.length;
-    for (const link of links) {
-      if (link.hash === "#" + chapters[current].id) link.setAttribute("aria-current", "page");
-      else link.removeAttribute("aria-current");
-    }
+    shell.dataset.page = String(current);
+    previous.disabled = busy;
+    next.disabled = busy;
+    zoomOut.disabled = busy || zoomRatio <= MIN_ZOOM + .001;
+    zoomIn.disabled = busy || zoomRatio >= MAX_ZOOM - .001;
+    zoomReset.disabled = busy;
+    document.querySelector("#zoom-level").textContent = Math.round(zoomRatio * 100) + "%";
+    status.textContent = "Trang " + (current + 1) + " trên " + chapters.length + ": " + labels[current];
+  }
+
+  function setZoom(value, anchor) {
+    if (busy) return;
+    const rect = shell.getBoundingClientRect();
+    const stageRect = stage.getBoundingClientRect();
+    const x = anchor?.x ?? stageRect.left + stage.clientWidth / 2;
+    const y = anchor?.y ?? stageRect.top + stage.clientHeight / 2;
+    const u = (x - rect.left) / rect.width, v = (y - rect.top) / rect.height;
+    zoomRatio = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, value));
+    if (Math.abs(zoomRatio - 1) < .001) zoomRatio = 1;
+    layout();
+    const after = shell.getBoundingClientRect();
+    stage.scrollLeft += after.left + u * after.width - x;
+    stage.scrollTop += after.top + v * after.height - y;
+    stage.classList.toggle("can-pan", hasOverflow());
+    updateControls();
   }
 
   function showOnly(index) {
@@ -108,62 +130,109 @@
   }
 
   async function preparePage(index) {
-    const images = [...chapters[index].querySelectorAll("img")];
-    await Promise.all(images.map(image => {
-      image.loading = "eager";
-      return image.decode().catch(() => {});
-    }));
+    index = wrap(index);
+    if (!preparations.has(index)) {
+      const chapter = chapters[index];
+      const images = [...chapter.querySelectorAll("img")].map(image => {
+        image.loading = "eager";
+        return image.decode().catch(() => {});
+      });
+      const fonts = pageFonts[index].map(descriptor => {
+        if (!fontLoads.has(descriptor)) fontLoads.set(descriptor, document.fonts.load(descriptor).catch(() => []));
+        return fontLoads.get(descriptor);
+      });
+      const backgrounds = new Set();
+      for (const node of [chapter, ...chapter.querySelectorAll("div,article,figure")]) {
+        for (const match of getComputedStyle(node).backgroundImage.matchAll(/url\(["']?([^"')]+)["']?\)/g)) backgrounds.add(match[1]);
+      }
+      const decorations = [...backgrounds].map(url => {
+        const image = new Image();
+        image.src = url;
+        return image.decode().catch(() => {});
+      });
+      preparations.set(index, Promise.all([...images, ...fonts, ...decorations]));
+    }
+    await preparations.get(index);
     fitChapter(index);
   }
 
-  function setZoom(value) {
-    zoomed = value;
-    stage.classList.toggle("is-zoomed", value);
-    zoom.setAttribute("aria-pressed", String(value));
-    zoom.querySelector("span").textContent = value ? "Vừa trang" : "Phóng to";
-    document.querySelector(".turn-hint").textContent = value ? "Kéo để xem nội dung trang" : "Vuốt hoặc dùng phím ← → để lật trang";
-    layout();
-    stage.scrollTo({ left: value ? Math.max(0, (shell.offsetWidth - stage.clientWidth) / 2) : 0, top: 0, behavior: "instant" });
+  function prefetchNextPage() {
+    cancelPrefetch?.();
+    cancelPrefetch = null;
+    const connection = navigator.connection;
+    if (connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || "")) return;
+    const expected = current;
+    const run = () => {
+      cancelPrefetch = null;
+      if (!busy && current === expected) preparePage(current + 1).catch(() => {});
+    };
+    if ("requestIdleCallback" in window) {
+      const id = requestIdleCallback(run, { timeout: 2500 });
+      cancelPrefetch = () => cancelIdleCallback(id);
+    } else {
+      const id = setTimeout(run, 300);
+      cancelPrefetch = () => clearTimeout(id);
+    }
   }
 
-  async function turnTo(index, { history = true, animate = true } = {}) {
-    if (index < 0 || index >= chapters.length) return;
-    if (busy) {
-      queued = { index, options: { history, animate } };
-      return;
+  function paperMask(top, middle, direction) {
+    const x = n => (direction > 0 ? n : WIDTH - n).toFixed(1);
+    const edge = top * WIDTH, mid = middle * WIDTH, control = edge - (edge - mid) * .3;
+    return 'path("M' + x(0) + ' 0 H' + x(edge) +
+      ' C' + x(control) + ' 210 ' + x(mid) + ' 420 ' + x(mid) + ' 700' +
+      ' C' + x(mid) + ' 980 ' + x(control) + ' 1190 ' + x(edge) + ' 1400 H' + x(0) + ' Z")';
+  }
+
+  async function transition(from, index, direction) {
+    const moving = leaves[from];
+    moving.hidden = false;
+    moving.inert = true;
+    moving.setAttribute("aria-hidden", "true");
+    moving.style.zIndex = "3";
+    moving.classList.add("is-turning");
+    effect.classList.toggle("is-backward", direction < 0);
+    effect.hidden = false;
+    const timing = { duration: 580, easing: "cubic-bezier(.22,.6,.3,1)", fill: "both" };
+    animations = [
+      moving.animate([
+        { clipPath: paperMask(1, 1, direction), opacity: 1, offset: 0 },
+        { clipPath: paperMask(.70, .50, direction), opacity: 1, offset: .55 },
+        { clipPath: paperMask(.48, .30, direction), opacity: 1, offset: .80 },
+        { clipPath: paperMask(0, 0, direction), opacity: 1, offset: 1 }
+      ], timing),
+      curl.animate([
+        { transform: "translateX(800px)", opacity: 0, offset: 0 },
+        { transform: "translateX(755px)", opacity: .75, offset: .15 },
+        { transform: "translateX(464px)", opacity: 1, offset: .55 },
+        { transform: "translateX(218px)", opacity: .75, offset: .80 },
+        { transform: "translateX(-320px)", opacity: 0, offset: 1 }
+      ], timing)
+    ];
+    try { await Promise.all(animations.map(item => item.finished.catch(() => {}))); }
+    finally {
+      animations.forEach(item => item.cancel());
+      animations = [];
+      moving.classList.remove("is-turning");
+      effect.hidden = true;
     }
+  }
+
+  async function turnTo(requested, { history = true, animate = true, direction = Math.sign(requested - current) || 1 } = {}) {
+    const index = wrap(requested);
+    if (busy) { queued = { index, options: { history, animate, direction } }; return; }
     if (index === current) return;
     busy = true;
     updateControls();
-    const from = current;
-    const focusWasInside = chapters[from].contains(document.activeElement);
+    const from = current, focusWasInside = chapters[from].contains(document.activeElement);
     try {
       await preparePage(index);
-      if (zoomed) setZoom(false);
-      const forward = index > from;
-      const moving = leaves[forward ? from : index];
       current = index;
       showOnly(index);
-      leaves[from].hidden = false;
-      leaves[from].inert = true;
-      leaves[from].setAttribute("aria-hidden", "true");
-      leaves[from].style.zIndex = "1";
-      leaves[index].style.zIndex = "2";
       fitChapter(index);
       if (history) window.history.pushState(null, "", "#" + chapters[index].id);
       updateControls();
-      if (animate && !reducedMotion.matches && typeof moving.animate === "function") {
-        moving.classList.add("is-turning");
-        moving.style.zIndex = "3";
-        animation = moving.animate(
-          forward ? [{ transform: "rotateY(0deg)" }, { transform: "rotateY(-180deg)" }] :
-            [{ transform: "rotateY(-180deg)" }, { transform: "rotateY(0deg)" }],
-          { duration: 760, easing: "cubic-bezier(.25,.55,.25,1)", fill: "both" }
-        );
-        await animation.finished.catch(() => {});
-        animation.cancel();
-        animation = null;
-        moving.classList.remove("is-turning");
+      if (animate && !reducedMotion.matches && typeof leaves[from].animate === "function") {
+        await transition(from, index, direction);
       }
       showOnly(index);
       if (focusWasInside) {
@@ -174,9 +243,8 @@
     } finally {
       busy = false;
       updateControls();
-      if (current + 1 < chapters.length) preparePage(current + 1).catch(() => {});
-      const pending = queued;
-      queued = null;
+      prefetchNextPage();
+      const pending = queued; queued = null;
       if (pending) turnTo(pending.index, pending.options);
     }
   }
@@ -190,45 +258,82 @@
       return;
     }
     const index = indexForHash(link.hash);
-    if (index >= 0) {
-      event.preventDefault();
-      turnTo(index);
-    }
+    if (index >= 0) { event.preventDefault(); turnTo(index); }
   });
 
   previous.addEventListener("click", () => turnTo(current - 1));
   next.addEventListener("click", () => turnTo(current + 1));
-  zoom.addEventListener("click", () => {
-    if (!busy) setZoom(!zoomed);
-  });
+  zoomOut.addEventListener("click", () => setZoom(zoomRatio / 1.2));
+  zoomIn.addEventListener("click", () => setZoom(zoomRatio * 1.2));
+  zoomReset.addEventListener("click", () => setZoom(1));
 
   document.addEventListener("keydown", event => {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
       event.target.closest("input,textarea,select,[contenteditable]")) return;
+    if (event.key === "Escape" && zoomRatio !== 1) { event.preventDefault(); setZoom(1); return; }
     const keys = { ArrowRight: current + 1, PageDown: current + 1, ArrowLeft: current - 1, PageUp: current - 1, Home: 0, End: chapters.length - 1 };
-    if (zoomed && event.key === "Escape") {
-      event.preventDefault();
-      setZoom(false);
-    } else if (!zoomed && Object.hasOwn(keys, event.key)) {
-      event.preventDefault();
-      turnTo(keys[event.key]);
-    }
+    if (!Object.hasOwn(keys, event.key)) return;
+    event.preventDefault();
+    if (hasOverflow()) {
+      const pan = { ArrowRight: [70, 0], ArrowLeft: [-70, 0], PageDown: [0, stage.clientHeight * .75], PageUp: [0, -stage.clientHeight * .75] };
+      if (pan[event.key]) stage.scrollBy(...pan[event.key]);
+    } else turnTo(keys[event.key]);
   });
 
+  stage.addEventListener("wheel", event => {
+    if (!event.ctrlKey) return;
+    event.preventDefault();
+    setZoom(zoomRatio * Math.exp(-event.deltaY * .008), { x: event.clientX, y: event.clientY });
+  }, { passive: false });
+
+  function pair() {
+    const [a, b] = [...pointers.values()];
+    return { distance: Math.hypot(a.x - b.x, a.y - b.y), x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+  }
   stage.addEventListener("pointerdown", event => {
-    if (zoomed || busy || !event.isPrimary || event.pointerType === "mouse" || event.target.closest("a,button")) return;
-    swipe = { id: event.pointerId, x: event.clientX, y: event.clientY, time: performance.now() };
+    if (busy || event.button !== 0 || event.target.closest("a,button") || (event.pointerType === "mouse" && !hasOverflow())) return;
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
     stage.setPointerCapture(event.pointerId);
+    if (pointers.size === 2) {
+      const info = pair();
+      gesture = { type: "pinch", ...info, zoom: zoomRatio };
+    } else if (pointers.size === 1) {
+      gesture = { type: hasOverflow() ? "pan" : "swipe", x: event.clientX, y: event.clientY, scrollX: stage.scrollLeft, scrollY: stage.scrollTop, time: performance.now() };
+    }
+    stage.classList.toggle("is-panning", gesture?.type === "pan");
   });
-  stage.addEventListener("pointerup", event => {
-    if (!swipe || swipe.id !== event.pointerId) return;
-    const dx = event.clientX - swipe.x;
-    const dy = event.clientY - swipe.y;
-    const quick = performance.now() - swipe.time < 900;
-    swipe = null;
-    if (quick && Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) turnTo(current + (dx < 0 ? 1 : -1));
+  stage.addEventListener("pointermove", event => {
+    if (!pointers.has(event.pointerId) || !gesture) return;
+    pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
+    if (gesture.type === "pinch" && pointers.size >= 2) {
+      const info = pair();
+      stage.scrollLeft -= info.x - gesture.x;
+      stage.scrollTop -= info.y - gesture.y;
+      setZoom(gesture.zoom * info.distance / Math.max(1, gesture.distance), info);
+      gesture.x = info.x; gesture.y = info.y;
+    } else if (gesture.type === "pan") {
+      stage.scrollLeft = gesture.scrollX - (event.clientX - gesture.x);
+      stage.scrollTop = gesture.scrollY - (event.clientY - gesture.y);
+    }
   });
-  stage.addEventListener("pointercancel", () => { swipe = null; });
+  function endPointer(event, cancelled = false) {
+    if (!pointers.has(event.pointerId)) return;
+    pointers.delete(event.pointerId);
+    const last = gesture;
+    stage.classList.remove("is-panning");
+    if (pointers.size === 1) {
+      const point = [...pointers.values()][0];
+      gesture = { type: "pan", x: point.x, y: point.y, scrollX: stage.scrollLeft, scrollY: stage.scrollTop };
+    } else gesture = null;
+    if (!cancelled && pointers.size === 0 && last?.type === "swipe") {
+      const dx = event.clientX - last.x, dy = event.clientY - last.y;
+      if (performance.now() - last.time < 900 && Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+        turnTo(current + (dx < 0 ? 1 : -1));
+      }
+    }
+  }
+  stage.addEventListener("pointerup", event => endPointer(event));
+  stage.addEventListener("pointercancel", event => endPointer(event, true));
 
   const followHistory = () => {
     const index = indexForHash(location.hash);
@@ -238,18 +343,23 @@
   window.addEventListener("hashchange", followHistory);
   window.addEventListener("resize", scheduleLayout);
   reducedMotion.addEventListener("change", () => {
-    if (reducedMotion.matches && animation) animation.finish();
+    if (reducedMotion.matches) animations.forEach(item => item.finish());
   });
   new ResizeObserver(scheduleLayout).observe(stage);
 
   current = Math.max(0, indexForHash(location.hash));
   document.body.classList.add("book-mode");
-  toolbar.hidden = false;
+  document.querySelector(".reader-tools").hidden = false;
+  document.querySelector(".book-page-controls").hidden = false;
+  document.querySelector(".reader-hint").hidden = false;
   showOnly(current);
   layout();
   updateControls();
   window.scrollTo(0, 0);
-  preparePage(current).then(scheduleLayout);
-  if (current + 1 < chapters.length) preparePage(current + 1).catch(() => {});
-  Promise.all([...document.fonts].map(font => font.load().catch(() => {}))).then(scheduleLayout);
+  preparePage(current).then(() => {
+    scheduleLayout();
+    performance.mark("book-ready");
+    prefetchNextPage();
+  });
+  document.fonts.ready.then(scheduleLayout);
 })();
