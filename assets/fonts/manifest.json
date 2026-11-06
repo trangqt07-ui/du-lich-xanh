@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Capitaly Script",
+    "alias": "Capitaly Script",
+    "weight": 400,
+    "file": "assets/fonts/capitaly-script-regular.woff2"
+  },
+  {
+    "name": "Dancing Script",
+    "alias": "Dancing Script",
+    "weight": 400,
+    "file": "assets/fonts/dancing-script-regular.woff2"
+  },
+  {
+    "name": "Crimson Roman",
+    "alias": "Crimson Roman",
+    "weight": 400,
+    "file": "assets/fonts/crimson-roman-regular.woff2"
+  },
+  {
+    "name": "Linux Biolinum",
+    "alias": "Linux Biolinum",
+    "weight": 400,
+    "file": "assets/fonts/linux-biolinum-regular.woff2"
+  },
+  {
+    "name": "Linux Biolinum",
+    "alias": "Linux Biolinum",
+    "weight": 700,
+    "file": "assets/fonts/linux-biolinum-bold.woff2"
+  },
+  {
+    "name": "TAN Astoria",
+    "alias": "TAN Astoria",
+    "weight": 400,
+    "file": "assets/fonts/tan-astoria-regular.woff2"
+  },
+  {
+    "name": "Muli",
+    "alias": "Muli",
+    "weight": 400,
+    "file": "assets/fonts/muli-regular.woff2"
+  },
+  {
+    "name": "TT Ramillas",
+    "alias": "TT Ramillas",
+    "weight": 400,
+    "file": "assets/fonts/tt-ramillas-regular.woff2"
+  },
+  {
+    "name": "Lato",
+    "alias": "Lato",
+    "weight": 400,
+    "file": "assets/fonts/lato-regular.woff2"
+  },
+  {
+    "name": "1FTV Aloevera",
+    "alias": "Aloevera",
+    "weight": 400,
+    "file": "assets/fonts/1ftv-aloevera-regular.ttf"
+  },
+  {
+    "name": "1FTV Keong",
+    "alias": "Keong",
+    "weight": 400,
+    "file": "assets/fonts/1ftv-keong-italics.ttf"
+  },
+  {
+    "name": "DM Sans",
+    "alias": "DM Sans",
+    "weight": 400,
+    "file": "assets/fonts/dm-sans-regular.woff2"
+  }
+]
