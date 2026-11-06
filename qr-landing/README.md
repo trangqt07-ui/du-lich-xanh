@@ -1,29 +1,37 @@
 # Sắc Xanh Xứ Nghệ
 
-Website tĩnh tiếng Việt, triển khai theo **5 trang đầu** của [thiết kế Canva](https://www.canva.com/design/DAHZ-cb46Rw/cSeUMLy4NEadVp3hpzzDtA/edit):
+Website dạng sách/menu với 5 trang theo [thiết kế Canva](https://www.canva.com/design/DAHZ-cb46Rw/cSeUMLy4NEadVp3hpzzDtA/edit) và ảnh đối chiếu người dùng cung cấp. Gồm Giới thiệu, Làng Sen quê Bác, Cửa Lò bến nhớ, Dấu ấn Sông Lam và Ví Dặm tình ca.
 
-1. Giới thiệu — nền giấy kem, tiêu đề lớn, ảnh khung tem.
-2. Làng Sen quê Bác — giấy ô xanh bạc hà, họa tiết hoa sen.
-3. Cửa Lò bến nhớ — cảnh biển, bố cục tiêu đề và ảnh bên trái, nội dung bên phải.
-4. Dấu ấn Sông Lam — khung giấy cổ điển, họa tiết tre và sóng nước.
-5. Ví, giặm tình ca — nền xanh, giấy xé, cành hoa và nốt nhạc.
+- Mỗi lần hiển thị một trang vừa màn hình, chuyển bằng hiệu ứng lật giấy 3D. Không cuộn dài qua các chủ đề.
+- Lật bằng nút Trang trước/Trang sau, phím ← →, Home/End, hoặc vuốt ngang trên điện thoại. Thanh mục lục mở trực tiếp từng chủ đề.
+- Nút Phóng to cho phép kéo xem chi tiết trong trang hiện tại; Vừa trang hoặc Escape thu nhỏ lại. Chuyển trang sẽ trở về chế độ vừa màn hình.
+- Dùng ảnh Canva thật: ảnh sản phẩm lớn, chân dung Bác, giấy, mặt nước, hoa sen, mây, trống đồng, tre, cành hoa và nốt nhạc.
+- Dùng đúng các font trong thiết kế, lưu tại `assets/fonts/`: Capitaly Script, Dancing Script, Crimson Roman, Linux Biolinum, TAN Astoria, Muli, TT Ramillas, Lato, 1FTV Aloevera, 1FTV Keong và DM Sans.
+- Giữ nguyên phần chữ giới thiệu sản phẩm, chỉ sửa lỗi gõ rõ ràng như “Biến Cửa Lò” thành “Biển Cửa Lò”.
+- Phần Làng Sen dùng khung tem nâu theo ảnh chốt của người dùng.
 
-Nội dung từ Canva được giữ đầy đủ, sửa các lỗi gõ rõ ràng. Trang thứ 6 (“Nong mốt”) không nằm trong phạm vi 5 trang. Nội dung là HTML thật, tự xếp lại trên điện thoại; mỗi phần có liên kết riêng để dùng làm đích QR: `#gioi-thieu`, `#lang-sen`, `#cua-lo`, `#song-lam`, `#vi-giam`. Thanh điều hướng đánh dấu phần đang đọc.
+## Xem website
 
-## Chạy local
+Mở `index.html` bằng trình duyệt. Không cần cài thư viện hoặc build. Font và ảnh đã lưu trong dự án, không phụ thuộc link Canva có thời hạn.
 
-Mở `index.html` trực tiếp, hoặc chạy HTTP server từ thư mục này:
+`book.css` định dạng khung sách và mặt giấy; `script.js` xử lý lật trang, lịch sử trình duyệt, vuốt và phóng to bằng API trình duyệt. Không có thư viện lật sách hoặc CDN bên ngoài. Nếu tắt JavaScript, toàn bộ nội dung vẫn đọc được theo chiều dọc.
+
+Có thể dùng HTTP server từ thư mục này:
 
 ```sh
 python -m http.server 8000
 ```
 
-Mở http://localhost:8000. Không cần cài thư viện hay build. JavaScript chỉ phục vụ đánh dấu điều hướng; toàn bộ nội dung và liên kết vẫn hoạt động khi tắt JavaScript.
+Các đường dẫn QR được giữ: `#gioi-thieu`, `#lang-sen`, `#bo-suu-tap`, `#cua-lo`, `#song-lam`, `#vi-giam`.
 
-## Hình ảnh
+## Kiểm tra, thay ảnh
 
-Ảnh trong `assets/` là các ảnh đã có trong dự án. Ảnh sản phẩm của bốn chủ đề hiện là ảnh thu nhỏ khoảng 150 px; cần thay bằng ảnh gốc để hiển thị sắc nét ở kích thước lớn. Một số asset riêng tư Canva chưa cho phép truy cập trực tiếp. Các họa tiết được dựng lại bằng SVG/CSS, vì vậy giao diện là bản HTML thích ứng theo bố cục Canva, không phải bản xuất nguyên trang.
+Mở `anh-canva.html` để xem 62 ảnh nguồn và biến thể màu / hiệu ứng / tách nền lấy từ dữ liệu thiết kế. Ảnh được nhóm theo từng chủ đề, kèm mã và kích thước. Mục bổ sung chứa những phiên bản hiệu ứng khác.
 
-## Đưa lên GitHub Pages
+Danh mục không chứa URL ký số hoặc thông tin truy cập: `assets/canva/manifest.json`. Thay ảnh cùng đường dẫn sẽ giữ được bố cục hiện tại. Các ảnh WebP cũ nằm ngay trong `assets/` được giữ lại; website dùng bộ ảnh mới trong `assets/canva/`.
 
-Đẩy nội dung thư mục này lên repository, chọn **Settings → Pages → Deploy from a branch**, chọn nhánh và thư mục chứa `index.html`. Dùng địa chỉ Pages làm đích cho mã QR.
+Ảnh đan tre ở góc dưới trang mở đầu đã bị cắt sát mép trái ngay trong file nguồn Canva. Ảnh được đặt trực tiếp theo mép ngoài của phần giới thiệu để không lộ đường cắt giữa trang. Muốn hiển thị trọn vòng tròn cần thay bằng ảnh chưa cắt. Ảnh sản phẩm giữ tỷ lệ nguồn, không ép vào khung dùng `object-fit: cover`.
+
+## Kiểm tra
+
+Đã kiểm tra trên Chrome ở máy tính, điện thoại 390/320 px và điện thoại xoay ngang. Bao gồm đủ 5 trang, hiệu ứng 3D, mặt sau giấy, phím điều hướng, mục lục, Back/Forward, liên kết QR cũ, thao tác vuốt thật, phóng to và kéo nội dung. Mỗi thời điểm chỉ một trang hoạt động; các trang còn lại được ẩn với trình đọc màn hình và bàn phím. Chế độ giảm chuyển động bỏ hiệu ứng lật. Nội dung vẫn đọc được khi tắt JavaScript.

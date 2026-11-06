@@ -3,209 +3,162 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Sắc Xanh Xứ Nghệ — những câu chuyện về Làng Sen, Cửa Lò, Sông Lam và ví, giặm qua bộ sưu tập quà lưu niệm mây tre đan.">
-  <meta name="theme-color" content="#f7f2df">
+  <meta name="description" content="Sắc Xanh Xứ Nghệ — từ đôi bàn tay người nghệ nhân, những món quà mây tre đan kể chuyện Làng Sen, Cửa Lò, Sông Lam và ví, giặm Nghệ Tĩnh.">
+  <meta name="theme-color" content="#fff7e9">
   <title>Sắc Xanh Xứ Nghệ · Du lịch xanh</title>
+  <link rel="preload" href="assets/fonts/capitaly-script-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="book.css">
   <script src="script.js" defer></script>
 </head>
 <body id="dau-trang">
   <a class="skip-link" href="#noi-dung">Đến nội dung</a>
-
-  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <defs>
-      <symbol id="lotus-flower" viewBox="0 0 240 240">
-        <path d="M119 217q-1-65 7-98M123 179q-30-45-71-24M122 197q36-38 70-29" fill="none" stroke="#586c43" stroke-width="4"/>
-        <path d="M121 132C73 128 40 99 38 69c35 0 70 18 83 63Z" fill="#d49a9c"/>
-        <path d="M121 133C93 113 74 69 87 31c26 20 42 63 34 102Z" fill="#e9b6af"/>
-        <path d="M121 133c-7-40 8-83 34-104 12 40-5 83-34 104Z" fill="#d99da6"/>
-        <path d="M121 133c16-42 49-63 86-65-6 35-39 63-86 65Z" fill="#e3aaa7"/>
-        <path d="M121 137c-41 13-78-1-91-22 34-12 66-6 91 22Z" fill="#cf8994"/>
-        <path d="M121 137c32-28 65-34 96-23-12 23-53 36-96 23Z" fill="#efc1b2"/>
-        <path d="M126 136q-12-18-3-42 17 23 3 42" fill="#f1d1ad"/>
-        <path d="M102 198q-62-54-88-23 18 41 88 23M137 210q46-57 88-29-24 38-88 29" fill="#8a9d74"/>
-        <path d="m25 179 74 17m113-13-72 25" stroke="#637650" fill="none" stroke-width="2"/>
-      </symbol>
-      <symbol id="bamboo-branch" viewBox="0 0 220 420">
-        <g fill="none" stroke="currentColor" stroke-width="6">
-          <path d="M97 427 111 4M119 427 133 7M104 125l-51-66M103 211l84-82M102 286 23 222"/>
-          <path d="m103 95 27 1m-29 85h28m-32 88h29m-31 83h29" stroke-width="4"/>
-        </g>
-        <g fill="currentColor">
-          <path d="M55 63Q7 72 9 15q36 7 46 48M54 63Q53 13 82 7q12 36-28 56M185 133q-15-58 15-78 25 43-15 78M185 133q44-25 35 23-26 11-35-23M39 233q-43-8-31-44 29 3 31 44M44 237q4-53 38-57 4 34-38 57M106 169q-55-17-56-60 40 6 56 60M125 297q20-54 64-58-9 39-64 58M126 302q49-7 66 20-39 20-66-20"/>
-        </g>
-      </symbol>
-      <symbol id="blossom-branch" viewBox="0 0 320 240">
-        <path d="M-12 34q125 20 225 167M61 57q60-17 117-7M123 107q-2-52 26-93M170 151q64-11 121 17" fill="none" stroke="#6d6549" stroke-width="5" stroke-linecap="round"/>
-        <g fill="#d4a39a" stroke="#f3d4bd" stroke-width="2">
-          <path d="M82 55c-30-7-25-33-5-24-7-24 21-26 21-7 20-15 32 10 10 18 21 15 1 32-14 17-3 18-26 16-12-4Z"/>
-          <path d="M160 49c-28-7-23-31-5-22-7-22 20-24 20-7 18-14 29 9 9 17 19 14 1 29-13 15-3 17-24 15-11-3Z"/>
-          <path d="M132 112c-30-7-25-33-5-24-7-24 21-26 21-7 20-15 32 10 10 18 21 15 1 32-14 17-3 18-26 16-12-4Z"/>
-          <path d="M232 164c-28-7-23-31-5-22-7-22 20-24 20-7 18-14 29 9 9 17 19 14 1 29-13 15-3 17-24 15-11-3Z"/>
-          <path d="M206 198c-28-7-23-31-5-22-7-22 20-24 20-7 18-14 29 9 9 17 19 14 1 29-13 15-3 17-24 15-11-3Z"/>
-        </g>
-        <g fill="#9eac7e"><path d="M182 52q12-36 39-28-2 27-39 28M117 91q-41-1-41-28 28-3 41 28M253 165q27-27 46-9-12 24-46 9M161 140q-37 9-47-15 28-13 47 15"/></g>
-      </symbol>
-      <symbol id="sailing-boat" viewBox="0 0 160 140">
-        <path d="M15 109q60 13 130-2l-28 24H42Z" fill="#82654b"/>
-        <path d="m83 10-4 96M87 20v77h49Z" fill="#fff9e6" stroke="#aa8c65" stroke-width="2"/>
-        <path d="M74 42v57H31Z" fill="#ede0bd"/>
-      </symbol>
-    </defs>
-  </svg>
-
   <header class="site-header">
-    <a class="brand" href="#gioi-thieu"><span class="brand-mark" aria-hidden="true">✳</span><span>Sắc Xanh <i>Xứ Nghệ</i></span></a>
-    <nav class="page-nav" aria-label="Năm trang bộ sưu tập">
-      <a href="#gioi-thieu" aria-current="location">Giới thiệu</a>
+    <a class="brand" href="#gioi-thieu">Sắc Xanh Xứ Nghệ</a>
+    <nav aria-label="Khám phá bộ sưu tập">
+      <a href="#gioi-thieu">Giới thiệu</a>
       <a href="#lang-sen">Làng Sen</a>
       <a href="#cua-lo">Cửa Lò</a>
       <a href="#song-lam">Sông Lam</a>
-      <a href="#vi-giam">Ví, giặm</a>
+      <a href="#vi-giam">Ví Dặm</a>
     </nav>
-    <span class="header-note">DU LỊCH XANH</span>
   </header>
 
-  <main id="noi-dung" class="collection">
-    <section class="page cover" id="gioi-thieu" aria-labelledby="tieu-de">
-      <div class="page-meta"><span>Bộ sưu tập quà lưu niệm</span><span>01 / 05</span></div>
-      <div class="cover-heading">
-        <p class="welcome">Chào mừng bạn đến với</p>
-        <h1 id="tieu-de">Sắc Xanh<br><span>Xứ Nghệ</span></h1>
-        <span class="heading-flourish" aria-hidden="true">❧</span>
-      </div>
-      <div class="cover-layout">
-        <div class="cover-copy">
-          <h2><span>Dấu ấn từ làng nghề</span></h2>
-          <p>Từ đôi bàn tay khéo léo của người nghệ nhân xứ Nghệ, những sản phẩm mây tre đan mang đậm hồn quê Việt.</p>
-          <div class="craft-photos">
-            <figure class="craft-photo"><img src="assets/dan-tre.webp" width="147" height="150" alt="Đôi bàn tay nghệ nhân đang đan những nan tre"></figure>
-            <div class="craft-note">Đan điều giản dị,<br>gửi chút quê hương.</div>
-          </div>
-          <a class="discover-link" href="#lang-sen">Mở câu chuyện đầu tiên <span aria-hidden="true">↗</span></a>
+  <main id="noi-dung" tabindex="-1" aria-label="Sổ tay Sắc Xanh Xứ Nghệ">
+    <div class="book-stage" id="book-stage">
+      <div class="book-shell">
+        <div class="book-pages">
+    <section class="chapter cover" id="gioi-thieu" aria-labelledby="tieu-de">
+      <div class="cover-inner">
+        <div class="cover-heading">
+          <p class="welcome">Chào mừng bạn đến với</p>
+          <h1 id="tieu-de">Sắc Xanh Xứ Nghệ<img class="title-leaves" src="assets/canva/MAHaEDpcleM.webp" alt="" aria-hidden="true" ></h1>
+          <img class="title-underline" src="assets/canva/MAHaEOuDZXc.webp" alt="" aria-hidden="true" >
         </div>
-        <figure class="cover-art">
-          <div class="postage-frame">
-            <img src="assets/hero.webp" width="800" height="600" alt="Bộ quà mây tre đan vẽ hoa sen và chim trắng, gồm mẹt tre, túi và móc khóa" fetchpriority="high">
+        <img class="craft-circle craft-top" src="assets/canva/MAHaEHDceh4.webp" alt="Những nan tre được xếp đan thủ công"  >
+        <svg class="curve-arrow arrow-top" viewBox="0 0 150 200" aria-hidden="true"><path d="M30 190C-5 114 55 45 128 17" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round"/><path d="m107 15 27-4-10 25" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="cover-body">
+          <div class="cover-copy">
+            <h2 class="brush-title"><img class="" src="assets/canva/MAHaEA3vwfk.webp" alt="" aria-hidden="true" ><span>Dấu ấn từ làng nghề</span><img class="brush-lotus" src="assets/canva/MAHaEMy5ISM.webp" alt="" aria-hidden="true" ></h2>
+            <p>Từ đôi bàn tay khéo léo của người nghệ nhân xứ Nghệ, những sản phẩm mây tre đan mang đậm hồn quê Việt.</p>
+            <div class="weaving-drawing">
+              <img class="weaving-hands" src="assets/canva/MAHaEOCz07c.webp" alt="" aria-hidden="true" >
+              <img class="dotted-curve" src="assets/canva/MAHaEI7VfzY.webp" alt="" aria-hidden="true" >
+            </div>
           </div>
-          <figcaption>Một món quà nhỏ. Một miền thương nhớ.</figcaption>
-          <div class="postmark" aria-hidden="true"><span>NGHỆ AN</span><b>✳</b><span>MÂY TRE ĐAN</span></div>
-        </figure>
+          <figure class="cover-product">
+            <div class="postage-frame"><img class="hero-photo" src="assets/canva/MAHaEPTW_1Y.webp" width="1600" height="1200" alt="Bộ quà mây tre đan vẽ hoa sen và chim trắng, gồm mẹt tre, túi và móc khóa" fetchpriority="high"></div>
+          </figure>
+        </div>
+        <div class="green-signature"><img class="green-logo" src="assets/canva/MAHZ-qsa4E4.webp" alt="Biểu trưng du lịch xanh với núi, sông và hoa sen"  ><p>– DU LỊCH XANH –</p></div>
+        <a class="scroll-cue" href="#lang-sen">Mở bộ sưu tập <span aria-hidden="true">→</span></a>
       </div>
-      <svg class="cover-bamboo decoration" aria-hidden="true"><use href="#bamboo-branch"/></svg>
-      <div class="cover-bottom"><span>Chất liệu tự nhiên · Bàn tay Việt</span><span>— DU LỊCH XANH —</span></div>
+      <img class="craft-circle craft-bottom" src="assets/canva/MAHaEHw48ig.webp" width="800" height="1099" alt="Bàn tay người thợ đang đan nan tre">
+      <svg class="curve-arrow arrow-bottom" viewBox="0 0 200 90" aria-hidden="true"><path d="M190 58C142 5 80 10 25 68" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="m28 45-7 28 28-4" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </section>
 
-    <section class="page lotus-page" id="lang-sen" aria-labelledby="lang-sen-title">
-      <div class="page-meta"><span>Sắc Xanh Xứ Nghệ · Kim Liên</span><span>02 / 05</span></div>
-      <div class="grid-paper" id="bo-suu-tap">
-        <header class="lotus-heading">
-          <p class="chapter-label">Một miền quê, một niềm thương</p>
-          <h2 id="lang-sen-title">Làng Sen <span>Quê Bác</span></h2>
-          <svg class="heading-lotus decoration" aria-hidden="true"><use href="#lotus-flower"/></svg>
-        </header>
-        <div class="story-copy">
-          <p>Làng Sen Kim Liên với những mái nhà giản dị, hàng tre xanh và ao sen hồng từ lâu đã trở thành hình ảnh thân thuộc của quê hương Nghệ An. Đây không chỉ là quê hương Chủ tịch Hồ Chí Minh mà còn là nơi lưu giữ những giá trị văn hóa và truyền thống tốt đẹp của người Việt.</p>
+    <section class="chapter lotus" id="lang-sen" aria-labelledby="lang-sen-title">
+      <div class="lotus-inner" id="bo-suu-tap">
+        <div class="lotus-paper">
+          <header class="lotus-heading">
+            <h2 id="lang-sen-title"><span>Làng Sen</span><span>Quê Bác</span></h2>
+            <img class="uncle-ho" src="assets/canva/MAHaEYLS-w4.webp" alt="Chân dung Chủ tịch Hồ Chí Minh"  loading="lazy">
+          </header>
+          <div class="story-copy lotus-copy"><p>Làng Sen Kim Liên với những mái nhà giản dị, hàng tre xanh và ao sen hồng từ lâu đã trở thành hình ảnh thân thuộc của quê hương Nghệ An. Đây không chỉ là quê hương Chủ tịch Hồ Chí Minh mà còn là nơi lưu giữ những giá trị văn hóa và truyền thống tốt đẹp của người Việt.</p>
           <p>Lấy cảm hứng từ vẻ đẹp ấy, bộ sản phẩm Làng Sen Kim Liên thuộc bộ sưu tập “Sắc Xanh Xứ Nghệ” ra đời nhằm đưa hình ảnh quê hương đến gần hơn với du khách. Trên chiếc mẹt tre là khung cảnh ngôi nhà quê bên hồ sen, kết hợp cùng chiếc túi và móc khóa hình nón được trang trí đồng điệu, tạo nên bộ quà lưu niệm mang đậm dấu ấn văn hóa Việt Nam.</p>
           <p>Điểm đặc biệt của sản phẩm là sự kết hợp giữa hình ảnh Làng Sen và chất liệu mây tre đan truyền thống. Những vật liệu gần gũi với thiên nhiên được người thợ khéo léo tạo hình, vừa có giá trị thẩm mỹ, vừa có thể sử dụng hoặc trưng bày trong đời sống hằng ngày.</p>
-          <p>Không chỉ là món quà lưu niệm, bộ sản phẩm còn góp phần quảng bá văn hóa địa phương, tôn vinh nghề thủ công truyền thống và khuyến khích du lịch gắn với thiên nhiên. Qua từng đường đan và hình ảnh hoa sen, “Sắc Xanh Xứ Nghệ” mong muốn gửi đến du khách một món quà giản dị nhưng ý nghĩa, giúp lưu giữ những ký ức đẹp về quê Bác và vùng đất Nghệ An thân thương.</p>
+          <p>Không chỉ là món quà lưu niệm, bộ sản phẩm còn góp phần quảng bá văn hóa địa phương, tôn vinh nghề thủ công truyền thống và khuyến khích du lịch gắn với thiên nhiên. Qua từng đường đan và hình ảnh hoa sen, “Sắc Xanh Xứ Nghệ” mong muốn gửi đến du khách một món quà giản dị nhưng ý nghĩa, giúp lưu giữ những ký ức đẹp về quê Bác và vùng đất Nghệ An thân thương.</p></div>
+          <div class="lotus-garden">
+            <img loading="lazy" decoding="async" class="lotus-stem" src="assets/canva/MAHYveLmNj0.webp" alt="" aria-hidden="true" >
+            <img loading="lazy" decoding="async" class="lotus-grove" src="assets/canva/MAGCLH4V1mw.webp" alt="" aria-hidden="true" >
+            <img loading="lazy" decoding="async" class="lotus-bloom" src="assets/canva/MAHYvYTMCqE.webp" alt="" aria-hidden="true" >
+            <img class="lotus-product" src="assets/canva/MAHaEpzSka8.webp" alt="Bộ quà Làng Sen Kim Liên với mẹt tre, túi và móc khóa vẽ nhà Bác bên ao sen"  loading="lazy">
+          </div>
         </div>
-        <div class="lotus-footer">
-          <svg class="lotus-large decoration" aria-hidden="true"><use href="#lotus-flower"/></svg>
-          <figure class="product-photo lotus-product">
-            <img src="assets/lang-sen.webp" width="150" height="115" loading="lazy" alt="Mẹt, túi và móc khóa mây tre đan vẽ ngôi nhà quê Bác bên ao sen">
-            <figcaption>Bộ sản phẩm Làng Sen Kim Liên</figcaption>
-          </figure>
-          <span class="handwritten">Hương sen còn mãi…</span>
-        </div>
+        <img loading="lazy" decoding="async" class="cloud cloud-left" src="assets/canva/MAF5i_Z4UOg.webp" alt="" aria-hidden="true" >
+        <img loading="lazy" decoding="async" class="cloud cloud-right" src="assets/canva/MAF5i_Z4UOg.webp" alt="" aria-hidden="true" >
       </div>
-      <a class="next-page" href="#cua-lo">Về miền biển <span aria-hidden="true">↓</span></a>
     </section>
 
-    <section class="page coast-page" id="cua-lo" aria-labelledby="cua-lo-title">
-      <div class="page-meta"><span>Sắc Xanh Xứ Nghệ · Miền biển</span><span>03 / 05</span></div>
-      <div class="sea-sky" aria-hidden="true">
-        <span class="sun"></span><span class="seagull gull-one">⌁</span><span class="seagull gull-two">⌁</span>
-        <svg class="sailing-boat"><use href="#sailing-boat"/></svg>
-        <div class="wave wave-back"></div><div class="wave wave-front"></div>
-      </div>
-      <div class="coast-paper">
-        <div class="coast-aside">
-          <p class="chapter-label">Thương nhớ biển quê</p>
-          <h2 id="cua-lo-title">Cửa Lò <span>Bến nhớ</span></h2>
-          <span class="sea-divider" aria-hidden="true">~ &nbsp; ~ &nbsp; ~</span>
-          <figure class="product-photo coast-product">
-            <img src="assets/cua-lo.webp" width="149" height="112" loading="lazy" alt="Bộ quà mây tre đan vẽ biển xanh Cửa Lò, bờ cát và thuyền">
-            <figcaption>Bộ sản phẩm Biển Cửa Lò</figcaption>
-          </figure>
+    <section class="chapter coast" id="cua-lo" aria-labelledby="cua-lo-title">
+      <div class="coast-inner">
+        <div class="coast-crown" aria-hidden="true">
+          <img loading="lazy" decoding="async" class="lotus-hills" src="assets/canva/MAHaEOR0Dnc.webp" alt="" aria-hidden="true" >
+          <img loading="lazy" decoding="async" class="coast-tray" src="assets/canva/MAHaEiXzqPc.webp" alt="" aria-hidden="true" >
         </div>
-        <div class="story-copy coast-copy">
+        <div class="coast-paper">
+          <div class="coast-aside">
+            <h2 id="cua-lo-title">Cửa Lò<br><span>Bến nhớ</span></h2>
+            <img class="coast-product" src="assets/canva/MAHaELE6ARw.webp" width="1600" height="1200" alt="Bộ quà Biển Cửa Lò, mẹt tre vẽ biển xanh, thuyền và bờ cát" loading="lazy">
+          </div>
+          <div class="coast-divider" aria-hidden="true"><img loading="lazy" decoding="async" class="divider-lotus" src="assets/canva/MAHaEOgdceY.webp" alt="" aria-hidden="true" ></div>
+          <div class="story-copy coast-copy"><p>Biển Cửa Lò với bãi cát dài, làn nước xanh và những con thuyền vươn khơi là hình ảnh đặc trưng của quê hương Nghệ An. Không chỉ là điểm đến nghỉ dưỡng, nơi đây còn gắn liền với cuộc sống bình dị của người dân miền biển.</p>
           <p>Lấy cảm hứng từ vẻ đẹp ấy, bộ sản phẩm Biển Cửa Lò thuộc bộ sưu tập “Sắc Xanh Xứ Nghệ” tái hiện khung cảnh biển xanh, bờ cát vàng, hàng dừa và những con thuyền nhỏ. Hình ảnh được thể hiện trên mẹt tre, túi mây tre đan và móc khóa hình nón, tạo nên bộ quà lưu niệm mang đậm dấu ấn vùng biển.</p>
-          <p>Sản phẩm không chỉ gợi nhớ những kỷ niệm bên biển mà còn gửi gắm thông điệp bảo vệ môi trường, giữ gìn cảnh quan và hạn chế rác thải nhựa. Với chất liệu thủ công gần gũi thiên nhiên, bộ quà tặng mong muốn đưa vẻ đẹp Cửa Lò đến gần hơn với du khách, lưu giữ những ký ức đáng nhớ về biển quê hương.</p>
+          <p>Sản phẩm không chỉ gợi nhớ những kỷ niệm bên biển mà còn gửi gắm thông điệp bảo vệ môi trường, giữ gìn cảnh quan và hạn chế rác thải nhựa. Với chất liệu thủ công gần gũi thiên nhiên, bộ quà tặng mong muốn đưa vẻ đẹp Cửa Lò đến gần hơn với du khách, lưu giữ những ký ức đáng nhớ về biển quê hương.</p></div>
         </div>
+        <img loading="lazy" decoding="async" class="coast-ribbon" src="assets/canva/MAHaEErtjIc.webp" alt="" aria-hidden="true" >
+        <img loading="lazy" decoding="async" class="coast-lotus-outline" src="assets/canva/MAHaEE1nE3Q.webp" alt="" aria-hidden="true" >
       </div>
-      <div class="coast-bottom"><span>Gửi một chút biển xanh trong từng món quà.</span><a class="next-page" href="#song-lam">Theo dòng Sông Lam <span aria-hidden="true">↓</span></a></div>
     </section>
 
-    <section class="page river-page" id="song-lam" aria-labelledby="song-lam-title">
-      <div class="page-meta"><span>Sắc Xanh Xứ Nghệ · Dòng sông quê</span><span>04 / 05</span></div>
-      <div class="river-frame">
-        <svg class="bamboo-left decoration" aria-hidden="true"><use href="#bamboo-branch"/></svg>
-        <svg class="bamboo-right decoration" aria-hidden="true"><use href="#bamboo-branch"/></svg>
-        <header class="river-heading">
-          <p class="chapter-label">Nơi ký ức chảy về</p>
-          <h2 id="song-lam-title">Dấu ấn <span>Sông Lam</span></h2>
-          <div class="ornament" aria-hidden="true"><span>✧</span></div>
-        </header>
-        <div class="story-copy">
-          <p>Sông Lam từ lâu đã gắn bó với đời sống người dân xứ Nghệ, bồi đắp phù sa cho ruộng đồng và lưu giữ ký ức của nhiều thế hệ. Dòng sông không chỉ là cảnh quan quen thuộc mà còn tượng trưng cho tình yêu quê hương và những kỷ niệm bình dị.</p>
+    <section class="chapter river" id="song-lam" aria-labelledby="song-lam-title">
+      <div class="river-inner">
+        <div class="drum-pattern" aria-hidden="true"><img loading="lazy" decoding="async" class="" src="assets/canva/MAHYuHoZuBk.webp" alt="" aria-hidden="true" ><img loading="lazy" decoding="async" class="" src="assets/canva/MAHYuO34iAs.webp" alt="" aria-hidden="true" ></div>
+        <img loading="lazy" decoding="async" class="bamboo bamboo-left" src="assets/canva/MAHYuIn7LFo.webp" alt="" aria-hidden="true" >
+        <img loading="lazy" decoding="async" class="bamboo bamboo-right" src="assets/canva/MAHYuMUtFYo.webp" alt="" aria-hidden="true" >
+        <div class="river-content">
+          <h2 id="song-lam-title">Dấu ấn Sông Lam</h2>
+          <div class="story-copy river-copy"><p>Sông Lam từ lâu đã gắn bó với đời sống người dân xứ Nghệ, bồi đắp phù sa cho ruộng đồng và lưu giữ ký ức của nhiều thế hệ. Dòng sông không chỉ là cảnh quan quen thuộc mà còn tượng trưng cho tình yêu quê hương và những kỷ niệm bình dị.</p>
           <p>Từ cảm hứng ấy, bộ sản phẩm Sông Lam Nghệ An thuộc bộ sưu tập “Sắc Xanh Xứ Nghệ” tái hiện dòng sông giữa núi đồi, ánh hoàng hôn và những con thuyền nhỏ. Hình ảnh được thể hiện trên mẹt tre, túi mây tre đan và móc khóa hình nón, tạo nên bộ quà lưu niệm mang nét đẹp yên bình của quê hương.</p>
           <p>Chất liệu tre và mây được sử dụng trong bộ sản phẩm có nguồn gốc từ làng nghề mây tre đan xã Nghi Thái. Dưới bàn tay người thợ, những nguyên liệu tự nhiên được xử lý, uốn, đan và hoàn thiện thành các sản phẩm mang tính ứng dụng cao. Nghề đan lát tại Nghi Thái không chỉ tạo ra những vật dụng gần gũi mà còn lưu giữ kỹ năng thủ công, nếp sống và giá trị văn hóa của làng quê Nghệ An.</p>
           <p>So với các sản phẩm lưu niệm làm từ nhựa hoặc vật liệu khó phân hủy, mây tre đan có độ bền sử dụng tốt, có thể dùng để đựng đồ, trang trí hoặc làm vật dụng hằng ngày. Qua đó, món quà không chỉ mang giá trị kỷ niệm mà còn khuyến khích việc lựa chọn sản phẩm tự nhiên, sử dụng lâu dài và góp phần hỗ trợ nghề thủ công địa phương.</p>
-          <p>Sản phẩm kết hợp chất liệu thủ công truyền thống của Nghi Thái với hình ảnh Sông Lam, giúp du khách lưu giữ những kỷ niệm về Nghệ An theo cách gần gũi và ý nghĩa hơn. Qua đó, “Sắc Xanh Xứ Nghệ” mong muốn lan tỏa tình yêu quê hương, sự trân trọng văn hóa và ý thức gìn giữ cảnh quan thiên nhiên.</p>
+          <p>Sản phẩm kết hợp chất liệu thủ công truyền thống của Nghi Thái với hình ảnh Sông Lam, giúp du khách lưu giữ những kỷ niệm về Nghệ An theo cách gần gũi và ý nghĩa hơn. Qua đó, “Sắc Xanh Xứ Nghệ” mong muốn lan tỏa tình yêu quê hương, sự trân trọng văn hóa và ý thức gìn giữ cảnh quan thiên nhiên.</p></div>
         </div>
-        <div class="river-footer">
-          <figure class="product-photo river-product">
-            <img src="assets/song-lam.webp" width="149" height="118" loading="lazy" alt="Bộ quà mây tre đan vẽ hoàng hôn, núi đồi và con thuyền trên Sông Lam">
-            <figcaption>Bộ sản phẩm Sông Lam Nghệ An</figcaption>
-          </figure>
-          <p class="river-quote">Một dòng sông.<br>Muôn vàn ký ức.</p>
-          <svg class="river-boat decoration" aria-hidden="true"><use href="#sailing-boat"/></svg>
+        <div class="river-landscape">
+          <img loading="lazy" decoding="async" class="river-scene" src="assets/canva/MAHaEt-h7qM.webp" alt="" aria-hidden="true" >
+          <img loading="lazy" decoding="async" class="river-ribbon" src="assets/canva/MAHaEqA81xA.webp" alt="" aria-hidden="true" >
+          <img loading="lazy" decoding="async" class="river-lotus-left" src="assets/canva/MAHaEnb2Y_Y.webp" alt="" aria-hidden="true" >
+          <img loading="lazy" decoding="async" class="river-lotus-right" src="assets/canva/MAHaEjECM3A.webp" alt="" aria-hidden="true" >
+          <img class="river-product" src="assets/canva/MAHaEidQmgQ.webp" alt="Bộ quà Sông Lam với cảnh núi đồi, hoàng hôn và thuyền trên sông"  loading="lazy">
         </div>
       </div>
-      <a class="next-page" href="#vi-giam">Lắng nghe lời quê <span aria-hidden="true">↓</span></a>
     </section>
 
-    <section class="page folk-page" id="vi-giam" aria-labelledby="vi-giam-title">
-      <div class="page-meta"><span>Sắc Xanh Xứ Nghệ · Di sản Nghệ Tĩnh</span><span>05 / 05</span></div>
-      <svg class="blossom-top decoration" aria-hidden="true"><use href="#blossom-branch"/></svg>
-      <article class="folk-paper">
-        <header class="folk-heading">
-          <figure class="product-photo folk-product">
-            <img src="assets/vi-giam.webp" width="149" height="113" loading="lazy" alt="Bộ quà mây tre đan minh họa đôi trai gái trong trang phục truyền thống hát ví, giặm">
-            <figcaption>Bộ sản phẩm Ví, giặm Nghệ Tĩnh</figcaption>
-          </figure>
-          <div><p class="chapter-label">Câu hát còn ngân</p><h2 id="vi-giam-title">Ví, giặm <span>Tình ca</span></h2></div>
-          <span class="music-note" aria-hidden="true">♫</span>
-        </header>
-        <div class="story-copy">
-          <p>Dân ca ví, giặm từ lâu đã trở thành một phần không thể thiếu trong đời sống văn hóa của người dân Nghệ An và Hà Tĩnh. Những câu hát mộc mạc chứa đựng tình yêu quê hương, tình cảm gia đình và tâm hồn chân thành của con người xứ Nghệ. Năm 2014, dân ca ví, giặm Nghệ Tĩnh được UNESCO ghi danh là Di sản văn hóa phi vật thể đại diện của nhân loại.</p>
+    <section class="chapter folk" id="vi-giam" aria-labelledby="vi-giam-title">
+      <div class="folk-inner">
+        <img loading="lazy" decoding="async" class="blossom blossom-top" src="assets/canva/MAHaEhp98PA.webp" alt="" aria-hidden="true" >
+        <article class="folk-paper">
+          <header class="folk-heading">
+            <img class="folk-product" src="assets/canva/MAHaEg9PXoU.webp" alt="Bộ quà Ví Dặm xứ Nghệ minh họa đôi trai gái trong trang phục truyền thống"  loading="lazy">
+            <h2 id="vi-giam-title">Ví Dặm<br>Tình ca</h2>
+            <img loading="lazy" decoding="async" class="music-notes" src="assets/canva/MAEudmx1zPk.webp" alt="" aria-hidden="true" >
+          </header>
+          <div class="story-copy folk-copy"><p>Dân ca ví, giặm từ lâu đã trở thành một phần không thể thiếu trong đời sống văn hóa của người dân Nghệ An và Hà Tĩnh. Những câu hát mộc mạc chứa đựng tình yêu quê hương, tình cảm gia đình và tâm hồn chân thành của con người xứ Nghệ. Năm 2014, dân ca ví, giặm Nghệ Tĩnh được UNESCO ghi danh là Di sản văn hóa phi vật thể đại diện của nhân loại.</p>
           <p>Lấy cảm hứng từ di sản ấy, bộ sản phẩm Ví, giặm Nghệ Tĩnh thuộc bộ sưu tập “Sắc Xanh Xứ Nghệ” khắc họa hình ảnh đôi trai gái trong trang phục truyền thống, kết hợp cùng nốt nhạc và khung cảnh quê hương trên mẹt tre, túi mây tre đan và móc khóa hình nón.</p>
           <p>Các sản phẩm được làm từ tre và mây tự nhiên có nguồn gốc từ làng nghề mây tre đan xã Nghi Thái. Tại làng nghề, người thợ sử dụng những kỹ thuật truyền thống để chẻ, vót, phơi, uốn và đan nguyên liệu thành các sản phẩm thủ công. Mỗi sản phẩm là kết quả của sự khéo léo, kiên trì và kinh nghiệm được gìn giữ qua thời gian.</p>
           <p>Việc kết hợp hình ảnh dân ca ví, giặm với sản phẩm mây tre đan Nghi Thái tạo nên sự gặp gỡ giữa hai giá trị văn hóa của Nghệ An: di sản nghệ thuật dân gian và nghề thủ công truyền thống. Nếu lời ca được lưu truyền qua giọng hát, thì kỹ nghệ đan lát được tiếp nối qua đôi bàn tay người thợ.</p>
-          <p>Sản phẩm là sự kết hợp giữa giá trị văn hóa và nghề thủ công truyền thống, góp phần đưa dân ca ví, giặm đến gần hơn với du khách, đặc biệt là thế hệ trẻ. Qua từng đường đan và hình ảnh, “Sắc Xanh Xứ Nghệ” mong muốn lưu giữ lời ca quê hương, khơi gợi niềm tự hào văn hóa và lan tỏa những giá trị di sản qua những món quà giản dị, thân thiện với môi trường.</p>
-        </div>
-        <div class="music-staff" aria-hidden="true"><span>𝄞</span><span>♪</span><span>♫</span><span>♩</span><span>♪</span></div>
-      </article>
-      <svg class="blossom-bottom decoration" aria-hidden="true"><use href="#blossom-branch"/></svg>
-      <a class="next-page" href="#gioi-thieu">Về trang mở đầu <span aria-hidden="true">↑</span></a>
+          <p>Sản phẩm là sự kết hợp giữa giá trị văn hóa và nghề thủ công truyền thống, góp phần đưa dân ca ví, giặm đến gần hơn với du khách, đặc biệt là thế hệ trẻ. Qua từng đường đan và hình ảnh, “Sắc Xanh Xứ Nghệ” mong muốn lưu giữ lời ca quê hương, khơi gợi niềm tự hào văn hóa và lan tỏa những giá trị di sản qua những món quà giản dị, thân thiện với môi trường.</p></div>
+          <div class="music-staff" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/canva/MAEBYEU7kVw.webp" alt=""></div>
+        </article>
+        <img loading="lazy" decoding="async" class="blossom blossom-bottom" src="assets/canva/MAHaEomOD2Q.webp" alt="" aria-hidden="true" >
+      </div>
+      <footer class="site-footer"><a href="#gioi-thieu">Sắc Xanh Xứ Nghệ</a><a href="#dau-trang">Về đầu trang ↑</a></footer>
     </section>
+        </div>
+      </div>
+    </div>
   </main>
-
-  <footer class="site-footer">
-    <a class="brand" href="#gioi-thieu"><span class="brand-mark" aria-hidden="true">✳</span><span>Sắc Xanh <i>Xứ Nghệ</i></span></a>
-    <p>Gìn giữ làng nghề. Gửi trao hồn quê.</p>
-    <a href="#dau-trang">Lên đầu trang <span aria-hidden="true">↑</span></a>
+  <footer class="book-toolbar" hidden>
+    <div class="book-pagination">
+      <button class="turn-button" id="previous-page" type="button" aria-label="Trang trước"><span aria-hidden="true">←</span><span class="button-label">Trang trước</span></button>
+      <div class="page-status" role="status" aria-live="polite" aria-atomic="true"><span id="page-title">Giới thiệu</span><span id="page-number">1 / 5</span></div>
+      <button class="turn-button" id="next-page" type="button" aria-label="Trang sau"><span class="button-label">Trang sau</span><span aria-hidden="true">→</span></button>
+    </div>
+    <div class="book-tools">
+      <span class="turn-hint">Vuốt hoặc dùng phím ← → để lật trang</span>
+      <button class="zoom-button" id="zoom-page" type="button" aria-pressed="false"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="m13 13 4 4M6 8.5h5M8.5 6v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Phóng to</span></button>
+    </div>
   </footer>
 </body>
 </html>
