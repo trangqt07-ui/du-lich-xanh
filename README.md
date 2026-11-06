@@ -3,6 +3,7 @@
 Website dạng sách/menu với 5 trang theo [thiết kế Canva](https://www.canva.com/design/DAHZ-cb46Rw/cSeUMLy4NEadVp3hpzzDtA/edit) và ảnh đối chiếu người dùng cung cấp. Gồm Giới thiệu, Làng Sen quê Bác, Cửa Lò bến nhớ, Dấu ấn Sông Lam và Ví Dặm tình ca.
 
 - Mỗi lần hiển thị một trang vừa màn hình. Chuyển cảnh bằng mép giấy cong hé khoảng 1/3–2/3 trang, không xoay cả tờ giấy 180°.
+- Khung giấy dàn theo chiều cao màn hình: giữ bố cục 4:5 trên máy tính, kéo dài có giới hạn trên điện thoại dọc để giảm khoảng trống. Ảnh giữ nguyên tỷ lệ; chữ và các cụm trang trí được căn lại trong khung giấy, không kéo giãn cả thiết kế.
 - Hai mũi tên nằm ở hai góc dưới của trang; không có mục lục hoặc thanh tiêu đề/số trang dưới cùng.
 - Mũi tên nét mảnh, không nền hoặc viền; dòng “Vuốt hoặc dùng phím ← → để lật trang” nằm dưới trang.
 - Lật bằng mũi tên, phím ← →, Home/End, hoặc vuốt ngang. Các trang lặp vòng: 5 → 1 → 2 và ngược lại.

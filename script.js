@@ -12,7 +12,7 @@
   const labels = ["Giới thiệu", "Làng Sen quê Bác", "Cửa Lò bến nhớ", "Dấu ấn Sông Lam", "Ví Dặm tình ca"];
   const paper = ["#fff7e9", "#895015", "#bddedc", "#fae7c6", "#779a47"];
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  const WIDTH = 1120, HEIGHT = 1400, MIN_ZOOM = .6, MAX_ZOOM = 4;
+  const WIDTH = 1120, MIN_HEIGHT = 1400, MAX_HEIGHT = 1960, MIN_ZOOM = .6, MAX_ZOOM = 4;
   const pointers = new Map();
   const preparations = new Map();
   const fontLoads = new Map();
@@ -25,6 +25,7 @@
   ];
   let cancelPrefetch = null;
   let current = 0, busy = false, queued = null, zoomRatio = 1;
+  let pageHeight = MIN_HEIGHT;
   let animations = [], layoutPending = false, gesture = null;
 
   const wrap = index => (index % chapters.length + chapters.length) % chapters.length;
@@ -64,8 +65,24 @@
   function fitChapter(index) {
     const leaf = leaves[index], chapter = chapters[index], hidden = leaf.hidden;
     if (hidden) { leaf.style.visibility = "hidden"; leaf.hidden = false; }
-    const scale = Math.min(1, HEIGHT / Math.max(chapter.offsetHeight, HEIGHT));
-    chapter.style.transform = "translateX(" + ((WIDTH - WIDTH * scale) / 2) + "px) scale(" + scale + ")";
+    // Fit copy inside its reserved area without shrinking the entire artwork.
+    const copy = chapter.querySelector(".story-copy");
+    if (copy && copy.dataset.fitHeight !== String(pageHeight)) {
+      copy.style.removeProperty("font-size");
+      const preferred = parseFloat(getComputedStyle(copy).fontSize);
+      if (copy.scrollHeight > copy.clientHeight + 1) {
+        let low = 16, high = preferred;
+        for (let step = 0; step < 8; step++) {
+          const size = (low + high) / 2;
+          copy.style.fontSize = size + "px";
+          if (copy.scrollHeight > copy.clientHeight + 1) high = size;
+          else low = size;
+        }
+        // Round down: rounding up can add a line at a wrapping boundary.
+        copy.style.fontSize = Math.floor(low * 100) / 100 + "px";
+      }
+      copy.dataset.fitHeight = String(pageHeight);
+    }
     if (hidden) { leaf.hidden = true; leaf.style.removeProperty("visibility"); }
   }
 
@@ -78,12 +95,17 @@
     const style = getComputedStyle(stage);
     const availableWidth = Math.max(1, stage.offsetWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight));
     const availableHeight = Math.max(1, stage.offsetHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom));
-    const fit = Math.min(availableWidth / WIDTH, availableHeight / HEIGHT, 1);
+    // Extend the composition on portrait screens; photos keep their own aspect ratio.
+    pageHeight = Math.round(Math.max(MIN_HEIGHT, Math.min(MAX_HEIGHT, WIDTH * availableHeight / availableWidth)));
+    shell.style.setProperty("--page-height", pageHeight + "px");
+    shell.style.setProperty("--page-grow", pageHeight - MIN_HEIGHT + "px");
+    shell.style.setProperty("--copy-size", 22 + (pageHeight - MIN_HEIGHT) * .014 + "px");
+    const fit = Math.min(availableWidth / WIDTH, availableHeight / pageHeight, 1);
     const scale = fit * zoomRatio;
     shell.style.setProperty("--book-scale", scale);
     shell.style.setProperty("--book-width", WIDTH * scale + "px");
-    shell.style.setProperty("--book-height", HEIGHT * scale + "px");
-    shell.style.setProperty("--book-top", Math.max(0, (availableHeight - HEIGHT * scale) / 2) + "px");
+    shell.style.setProperty("--book-height", pageHeight * scale + "px");
+    shell.style.setProperty("--book-top", Math.max(0, (availableHeight - pageHeight * scale) / 2) + "px");
     fitChapter(current);
     stage.classList.toggle("can-pan", hasOverflow());
   }
@@ -153,6 +175,8 @@
       preparations.set(index, Promise.all([...images, ...fonts, ...decorations]));
     }
     await preparations.get(index);
+    const copy = chapters[index].querySelector(".story-copy");
+    if (copy) delete copy.dataset.fitHeight;
     fitChapter(index);
   }
 
@@ -177,10 +201,11 @@
 
   function paperMask(top, middle, direction) {
     const x = n => (direction > 0 ? n : WIDTH - n).toFixed(1);
+    const y = fraction => (pageHeight * fraction).toFixed(1);
     const edge = top * WIDTH, mid = middle * WIDTH, control = edge - (edge - mid) * .3;
     return 'path("M' + x(0) + ' 0 H' + x(edge) +
-      ' C' + x(control) + ' 210 ' + x(mid) + ' 420 ' + x(mid) + ' 700' +
-      ' C' + x(mid) + ' 980 ' + x(control) + ' 1190 ' + x(edge) + ' 1400 H' + x(0) + ' Z")';
+      ' C' + x(control) + ' ' + y(.15) + ' ' + x(mid) + ' ' + y(.3) + ' ' + x(mid) + ' ' + y(.5) +
+      ' C' + x(mid) + ' ' + y(.7) + ' ' + x(control) + ' ' + y(.85) + ' ' + x(edge) + ' ' + y(1) + ' H' + x(0) + ' Z")';
   }
 
   async function transition(from, index, direction) {
