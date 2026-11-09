@@ -76,7 +76,7 @@ body.book-mode {
 }
 .page-arrow-previous { left: 13px; }
 .page-arrow-next { right: 13px; }
-.book-shell[data-page="3"] .page-arrow, .book-shell[data-page="4"] .page-arrow { color: #fff9e6; }
+.book-shell[data-page="3"] .page-arrow, .book-shell[data-page="4"] .page-arrow, .book-shell[data-page="5"] .page-arrow { color: #fff9e6; }
 .page-arrow:hover:enabled { background: transparent; opacity: .7; }
 .page-arrow-previous:hover:enabled { transform: translateX(-2px); }
 .page-arrow-next:hover:enabled { transform: translateX(2px); }

@@ -9,8 +9,8 @@
   const zoomIn = document.querySelector("#zoom-in");
   const zoomReset = document.querySelector("#zoom-reset");
   const status = document.querySelector("#page-status");
-  const labels = ["Giới thiệu", "Làng Sen quê Bác", "Cửa Lò bến nhớ", "Dấu ấn Sông Lam", "Ví Dặm tình ca"];
-  const paper = ["#fff7e9", "#895015", "#bddedc", "#fae7c6", "#779a47"];
+  const labels = ["Giới thiệu", "Làng Sen quê Bác", "Cửa Lò bến nhớ", "Dấu ấn Sông Lam", "Ví Dặm tình ca", "Đồi chè Thanh Chương"];
+  const paper = ["#fff7e9", "#895015", "#bddedc", "#fae7c6", "#779a47", "#1f5240"];
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   const WIDTH = 1080, HEIGHT = 1350, MIN_ZOOM = .6, MAX_ZOOM = 4;
   const pointers = new Map();
