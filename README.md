@@ -6,6 +6,8 @@ Website dạng sách/menu gồm 6 ảnh nguyên trang từ [thiết kế Canva](
 
 Ảnh được lấy trực tiếp từ bản render của Canva ở độ phân giải cao, lưu thành WebP 1440 × 1800 px trong `assets/pages`. Website không dựng lại chữ, ảnh hoặc các thành phần trang trí. Các lỗi chữ, vị trí hay phần cắt ảnh có sẵn trong Canva cũng được giữ nguyên. Muốn thay nội dung, chỉnh Canva rồi thay ảnh trang tương ứng.
 
+Đường dẫn 5 ảnh đầu có mã phiên bản theo nội dung để trình duyệt tải ảnh mới sau mỗi lần đồng bộ Canva.
+
 Mỗi trang giữ nguyên tỷ lệ 4:5. Khung vừa màn hình hiển thị trọn trang, không kéo dài hay cắt thiết kế. Màn hình khác tỷ lệ vẫn có khoảng trống quanh trang; có thể dùng thu phóng để đọc chi tiết.
 
 - Chuyển cảnh bằng mép giấy cong hé khoảng 1/3–2/3 trang.
@@ -23,7 +25,7 @@ Các QR cũ vẫn hoạt động: #gioi-thieu, #lang-sen, #bo-suu-tap, #cua-lo, 
 
 ## Dung lượng
 
-Bộ web dùng 6 ảnh WebP và 2 font cho thanh điều khiển, tổng khoảng 2,85 MB tài nguyên. Trang Đồi chè Thanh Chương thêm khoảng 517 KB. Chỉ tải trang đang mở, chuẩn bị thêm một trang kế tiếp khi trình duyệt rảnh; không tải trước khi bật tiết kiệm dữ liệu hoặc dùng mạng 2G.
+Bộ web dùng 6 ảnh WebP và 2 font cho thanh điều khiển, tổng khoảng 2,94 MB tài nguyên. Trang Đồi chè Thanh Chương thêm khoảng 517 KB. Chỉ tải trang đang mở, chuẩn bị thêm một trang kế tiếp khi trình duyệt rảnh; không tải trước khi bật tiết kiệm dữ liệu hoặc dùng mạng 2G.
 
 Phần HTML/CSS dựng lại thiết kế và bộ tài nguyên rời cũ được lưu trong .qa/before-canva-images/, nằm trong .gitignore. Ảnh PNG gốc chụp từ Canva lưu trong .canva-reference/, cũng được bỏ qua khi đưa lên Git.
 
